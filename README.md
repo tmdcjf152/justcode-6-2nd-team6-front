@@ -1,4 +1,4 @@
-# 7 Team Project
+# 6 Team Project
 
 #### 클론사이트 : 플로(Flo)[https://www.music-flo.com/]
 
