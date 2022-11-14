@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Router from "./src/pages/Router";
+import Router from "./Router";
 import "./styles/common.css";
 import "./styles/reset.css";
 import "./index.css";

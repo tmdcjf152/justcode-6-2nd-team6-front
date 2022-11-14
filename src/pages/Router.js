@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Playbar from "../components/playbar/Playbar";
@@ -63,7 +63,7 @@ function Router() {
   }, []);
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <ScrollToTop />
 
       {/* 헤더 */}
@@ -281,7 +281,7 @@ function Router() {
         setAlertOn={setAlertOn}
         isExpandedClicked={isExpandedClicked}
       />
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
