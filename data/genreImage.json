@@ -1,0 +1,44 @@
+{
+  "genreImg": [
+    {
+      "imageId": 1,
+      "image": "https://cdn.music-flo.com/poc/p/image/display/genre_rc/20200911/f2a6c528bfb04375b0208a1b3bd97c04.jpg"
+    },
+    {
+      "imageId": 2,
+      "image": "https://cdn.music-flo.com/poc/p/image/display/genre_rc/20200911/951b12b5d04f4751ae8fe99fdd9bf35a.jpg"
+    },
+    {
+      "imageId": 3,
+      "image": "https://cdn.music-flo.com/poc/p/image/display/genre_rc/20200911/e83e174c305e41fcbdba6049b60ac951.jpg"
+    },
+    {
+      "imageId": 4,
+      "image": "https://cdn.music-flo.com/poc/p/image/display/genre_rc/20200911/bfe8742a0a98456db3d286bf3921365b.jpg"
+    },
+    {
+      "imageId": 5,
+      "image": "https://cdn.music-flo.com/display/genre_rc/20210304/PR/a22b7d1baa5d4e18b1d7dccc794bd770.jpg"
+    },
+    {
+      "imageId": 6,
+      "image": "https://cdn.music-flo.com/poc/p/image/contents/category/20211031/380ae1e665614d238a5d6c611d4067c0.jpg"
+    },
+    {
+      "imageId": 7,
+      "image": "https://cdn.music-flo.com/poc/p/image/display/genre_rc/20200911/c0fdcdc3143446119c2dbf5e5633f46b.jpg"
+    },
+    {
+      "imageId": 8,
+      "image": "https://cdn.music-flo.com/poc/p/image/display/genre_rc/20200911/48537a12d27a41e9a4f0b1037cf6f91d.jpg"
+    },
+    {
+      "imageId": 9,
+      "image": "https://cdn.music-flo.com/poc/p/image/display/genre_rc/20200911/db4c57055e69466c9917a8c6853886de.jpg"
+    },
+    {
+      "imageId": 10,
+      "image": "https://cdn.music-flo.com/poc/p/image/display/genre_rc/20200911/b6c4b34f1619463fa2599394324814fe.jpg"
+    }
+  ]
+}

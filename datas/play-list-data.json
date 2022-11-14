@@ -1,0 +1,175 @@
+{
+  "playlistInfo": [
+    {
+      "playlistId": 1,
+      "characterId": 1,
+      "playlistTitle": "가을을 기다리는 발라드",
+      "playlistSongsCount": "16",
+      "createdDate": "2022-09-20T11:57:30.000Z",
+      "songId": 1,
+      "albumImage": "https://linkstorage.linkfire.com/medialinks/images/621146c9-ce43-4dc9-941f-892eb4a1df95/artwork-440x440.jpg"
+    }
+  ],
+  "playlistSongs": [
+    {
+      "playlistId": 1,
+      "songId": 1,
+      "songTitle": "Best of NCS music most viewed song  NoCopyrightSounds",
+      "albumId": 1,
+      "albumTitle": "When I’m With You",
+      "albumImage": "https://linkstorage.linkfire.com/medialinks/images/621146c9-ce43-4dc9-941f-892eb4a1df95/artwork-440x440.jpg",
+      "atsId": 1,
+      "artist": "Arcando"
+    },
+    {
+      "playlistId": 1,
+      "songId": 2,
+      "songTitle": "Cartoon  On  On feat Daniel Levi NCS Release",
+      "albumId": 1,
+      "albumTitle": "When I’m With You",
+      "albumImage": "https://linkstorage.linkfire.com/medialinks/images/621146c9-ce43-4dc9-941f-892eb4a1df95/artwork-440x440.jpg",
+      "atsId": 1,
+      "artist": "Arcando"
+    },
+    {
+      "playlistId": 1,
+      "songId": 3,
+      "songTitle": "Chime  MDK  Arcade Dwellers NCS Release",
+      "albumId": 1,
+      "albumTitle": "When I’m With You",
+      "albumImage": "https://linkstorage.linkfire.com/medialinks/images/621146c9-ce43-4dc9-941f-892eb4a1df95/artwork-440x440.jpg",
+      "atsId": 1,
+      "artist": "Arcando"
+    },
+    {
+      "playlistId": 1,
+      "songId": 8,
+      "songTitle": "Diviners  Azertion  Feelings NCS Release",
+      "albumId": 4,
+      "albumTitle": " Talk That Way",
+      "albumImage": "https://linkstorage.linkfire.com/medialinks/images/fe306f7d-d432-4f94-a2eb-646dc78e84e0/artwork-440x440.jpg",
+      "atsId": 4,
+      "artist": "JOXION"
+    },
+    {
+      "playlistId": 1,
+      "songId": 9,
+      "songTitle": "ElectroLight  Shiah Maisel  Letter NCS Release",
+      "albumId": 5,
+      "albumTitle": " Pixie Dust",
+      "albumImage": "https://linkstorage.linkfire.com/medialinks/images/b3970efd-bb3a-42ef-81ec-3c40c2421329/artwork-440x440.jpg",
+      "atsId": 5,
+      "artist": "Netrum"
+    },
+    {
+      "playlistId": 1,
+      "songId": 10,
+      "songTitle": "Elektronomia  Collide NCS Release",
+      "albumId": 6,
+      "albumTitle": " House Party",
+      "albumImage": "https://linkstorage.linkfire.com/medialinks/images/e686305e-a8f5-4dfc-bf70-c4d0745ef767/artwork-440x440.jpg",
+      "atsId": 6,
+      "artist": "Magnus"
+    },
+    {
+      "playlistId": 1,
+      "songId": 16,
+      "songTitle": "Jim Yosef  Firefly pt II ft STARLYTE NCS Release",
+      "albumId": 9,
+      "albumTitle": " Take Our Time",
+      "albumImage": "https://linkstorage.linkfire.com/medialinks/images/ac14077c-9c80-4c9c-bdc3-ad63316aef43/artwork-440x440.jpg",
+      "atsId": 7,
+      "artist": "Tollef"
+    },
+    {
+      "playlistId": 1,
+      "songId": 17,
+      "songTitle": "NIVIRO  The Edge feat Harley Bird NCS Release",
+      "albumId": 11,
+      "albumTitle": " Stay",
+      "albumImage": "https://linkstorage.linkfire.com/medialinks/images/6f86d119-f1ab-4ac6-a0ee-5883aedcd2da/artwork-440x440.jpg",
+      "atsId": 9,
+      "artist": "SirensCeol"
+    },
+    {
+      "playlistId": 1,
+      "songId": 19,
+      "songTitle": "Sam Ourt  FERGO  Love Me NCS Release",
+      "albumId": 12,
+      "albumTitle": " N3WPORT 20-21",
+      "albumImage": "https://linkstorage.linkfire.com/medialinks/images/9aada759-6f1b-4a4d-9f48-039dc9eaaa31/artwork-440x440.jpg",
+      "atsId": 10,
+      "artist": "N3WPORT"
+    },
+    {
+      "playlistId": 1,
+      "songId": 25,
+      "songTitle": "Tobu  If I Disappear ft Tom Mårtensson NCS Release",
+      "albumId": 5,
+      "albumTitle": " Pixie Dust",
+      "albumImage": "https://linkstorage.linkfire.com/medialinks/images/b3970efd-bb3a-42ef-81ec-3c40c2421329/artwork-440x440.jpg",
+      "atsId": 5,
+      "artist": "Netrum"
+    },
+    {
+      "playlistId": 1,
+      "songId": 31,
+      "songTitle": "When I’m With You",
+      "albumId": 1,
+      "albumTitle": "When I’m With You",
+      "albumImage": "https://linkstorage.linkfire.com/medialinks/images/621146c9-ce43-4dc9-941f-892eb4a1df95/artwork-440x440.jpg",
+      "atsId": 1,
+      "artist": "Arcando"
+    },
+    {
+      "playlistId": 1,
+      "songId": 30,
+      "songTitle": "WBN  Mojnz  Radio NCS Release",
+      "albumId": 7,
+      "albumTitle": " TIme",
+      "albumImage": "https://linkstorage.linkfire.com/medialinks/images/9246170a-15a7-4007-8b12-85da2301f983/artwork-440x440.jpg",
+      "atsId": 11,
+      "artist": "OVSKY"
+    },
+    {
+      "playlistId": 1,
+      "songId": 38,
+      "songTitle": "Like This",
+      "albumId": 6,
+      "albumTitle": " House Party",
+      "albumImage": "https://linkstorage.linkfire.com/medialinks/images/e686305e-a8f5-4dfc-bf70-c4d0745ef767/artwork-440x440.jpg",
+      "atsId": 6,
+      "artist": "Magnus"
+    },
+    {
+      "playlistId": 1,
+      "songId": 49,
+      "songTitle": "Castle (feat. Leila Pari)",
+      "albumId": 12,
+      "albumTitle": " N3WPORT 20-21",
+      "albumImage": "https://linkstorage.linkfire.com/medialinks/images/9aada759-6f1b-4a4d-9f48-039dc9eaaa31/artwork-440x440.jpg",
+      "atsId": 10,
+      "artist": "N3WPORT"
+    },
+    {
+      "playlistId": 1,
+      "songId": 50,
+      "songTitle": "Power (feat. braev)",
+      "albumId": 12,
+      "albumTitle": " N3WPORT 20-21",
+      "albumImage": "https://linkstorage.linkfire.com/medialinks/images/9aada759-6f1b-4a4d-9f48-039dc9eaaa31/artwork-440x440.jpg",
+      "atsId": 10,
+      "artist": "N3WPORT"
+    },
+    {
+      "playlistId": 1,
+      "songId": 51,
+      "songTitle": "Way To You",
+      "albumId": 7,
+      "albumTitle": " TIme",
+      "albumImage": "https://linkstorage.linkfire.com/medialinks/images/9246170a-15a7-4007-8b12-85da2301f983/artwork-440x440.jpg",
+      "atsId": 11,
+      "artist": "OVSKY"
+    }
+  ]
+}

@@ -1,0 +1,466 @@
+{
+  "slideData": [
+    {
+      "titleData": [
+        {
+          "playlistId": 4,
+          "playlistTitle": "둠칫둠칫 그루브 일렉트로닉",
+          "playlistSongsCount": "8",
+          "createdDate": "2022-09-24T11:25:41.000Z"
+        }
+      ],
+      "songsData": [
+        {
+          "songId": 16,
+          "albumImage": "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80",
+          "songTitle": "The wind whispers in dry leaves",
+          "artist": "Sabina"
+        },
+        {
+          "songId": 18,
+          "albumImage": "https://images.unsplash.com/photo-1619199003576-7cf4e1f7b25f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1266&q=80",
+          "songTitle": "My daughters",
+          "artist": "Rosemary time"
+        },
+        {
+          "songId": 19,
+          "albumImage": "https://images.unsplash.com/photo-1556836234-6798bfd4f28f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80",
+          "songTitle": "lead the nightly rhyme",
+          "artist": "Jerome"
+        },
+        {
+          "songId": 29,
+          "albumImage": "https://images.unsplash.com/photo-1611001476049-a59a2736d410?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80",
+          "songTitle": "Horrified",
+          "artist": "Oliver"
+        },
+        {
+          "songId": 48,
+          "albumImage": "https://images.unsplash.com/photo-1556836234-6798bfd4f28f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80",
+          "songTitle": "Alive (feat. Neoni)",
+          "artist": "Jerome"
+        },
+        {
+          "songId": 57,
+          "albumImage": "https://images.unsplash.com/photo-1526047932273-341f2a7631f9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80",
+          "songTitle": "Inferior",
+          "artist": "Kenneth"
+        },
+        {
+          "songId": 58,
+          "albumImage": "https://images.unsplash.com/photo-1471890701797-59336a877de4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2930&q=80",
+          "songTitle": "Fly Again",
+          "artist": "Lawrence"
+        },
+        {
+          "songId": 59,
+          "albumImage": "https://images.unsplash.com/photo-1611001476049-a59a2736d410?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80",
+          "songTitle": "Father",
+          "artist": "Oliver"
+        }
+      ]
+    },
+    {
+      "titleData": [
+        {
+          "playlistId": 2,
+          "playlistTitle": "가사에 조용히 귀 기울여 듣는 발라드",
+          "playlistSongsCount": "17",
+          "createdDate": "2022-09-24T11:25:41.000Z"
+        }
+      ],
+      "songsData": [
+        {
+          "songId": 15,
+          "albumImage": "https://images.unsplash.com/photo-1587468820439-4c80fa8ec7c6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80",
+          "songTitle": "Be quiet, stay calm",
+          "artist": "Rachel Motherly"
+        },
+        {
+          "songId": 16,
+          "albumImage": "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80",
+          "songTitle": "The wind whispers in dry leaves",
+          "artist": "Sabina"
+        },
+        {
+          "songId": 17,
+          "albumImage": "https://images.unsplash.com/photo-1619199003576-7cf4e1f7b25f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1266&q=80",
+          "songTitle": "Fine boy",
+          "artist": "Rosemary time"
+        },
+        {
+          "songId": 19,
+          "albumImage": "https://images.unsplash.com/photo-1556836234-6798bfd4f28f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80",
+          "songTitle": "lead the nightly rhyme",
+          "artist": "Jerome"
+        },
+        {
+          "songId": 27,
+          "albumImage": "https://images.unsplash.com/photo-1641423914598-288fee6cecf2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80",
+          "songTitle": "Touching me",
+          "artist": "김선우"
+        },
+        {
+          "songId": 28,
+          "albumImage": "https://images.unsplash.com/photo-1611001476049-a59a2736d410?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80",
+          "songTitle": "A Pity",
+          "artist": "Oliver"
+        },
+        {
+          "songId": 29,
+          "albumImage": "https://images.unsplash.com/photo-1611001476049-a59a2736d410?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80",
+          "songTitle": "Horrified",
+          "artist": "Oliver"
+        },
+        {
+          "songId": 31,
+          "albumImage": "https://images.unsplash.com/photo-1641423914598-288fee6cecf2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80",
+          "songTitle": "With difficulty",
+          "artist": "김선우"
+        }
+      ]
+    },
+    {
+      "titleData": [
+        {
+          "playlistId": 11,
+          "playlistTitle": "비내리는 새벽 감성 모음",
+          "playlistSongsCount": "8",
+          "createdDate": "2022-09-24T11:25:41.000Z"
+        }
+      ],
+      "songsData": [
+        {
+          "songId": 31,
+          "albumImage": "https://images.unsplash.com/photo-1641423914598-288fee6cecf2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80",
+          "songTitle": "With difficulty",
+          "artist": "김선우"
+        },
+        {
+          "songId": 35,
+          "albumImage": "https://images.unsplash.com/photo-1516131206008-dd041a9764fd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80",
+          "songTitle": "Talk That Way",
+          "artist": "Irene"
+        },
+        {
+          "songId": 37,
+          "albumImage": "https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80",
+          "songTitle": "Pretty woman",
+          "artist": "Edmund"
+        },
+        {
+          "songId": 38,
+          "albumImage": "https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80",
+          "songTitle": "Like This",
+          "artist": "Edmund"
+        },
+        {
+          "songId": 40,
+          "albumImage": "https://images.unsplash.com/photo-1573247318242-1da549d9924f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80",
+          "songTitle": "Lucky Charm (Inst.)",
+          "artist": "Erica"
+        },
+        {
+          "songId": 49,
+          "albumImage": "https://images.unsplash.com/photo-1556836234-6798bfd4f28f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80",
+          "songTitle": "Castle (feat. Leila Pari)",
+          "artist": "Jerome"
+        },
+        {
+          "songId": 50,
+          "albumImage": "https://images.unsplash.com/photo-1556836234-6798bfd4f28f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80",
+          "songTitle": "Power (feat. braev)",
+          "artist": "Jerome"
+        },
+        {
+          "songId": 52,
+          "albumImage": "https://images.unsplash.com/photo-1573247318242-1da549d9924f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80",
+          "songTitle": "Way To You (Inst.)",
+          "artist": "Erica"
+        }
+      ]
+    },
+    {
+      "titleData": [
+        {
+          "playlistId": 14,
+          "playlistTitle": "플레이어 1의 샤워송 모음",
+          "playlistSongsCount": "12",
+          "createdDate": "2022-09-24T11:25:41.000Z"
+        }
+      ],
+      "songsData": [
+        {
+          "songId": 16,
+          "albumImage": "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80",
+          "songTitle": "The wind whispers in dry leaves",
+          "artist": "Sabina"
+        },
+        {
+          "songId": 18,
+          "albumImage": "https://images.unsplash.com/photo-1619199003576-7cf4e1f7b25f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1266&q=80",
+          "songTitle": "My daughters",
+          "artist": "Rosemary time"
+        },
+        {
+          "songId": 19,
+          "albumImage": "https://images.unsplash.com/photo-1556836234-6798bfd4f28f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80",
+          "songTitle": "lead the nightly rhyme",
+          "artist": "Jerome"
+        },
+        {
+          "songId": 20,
+          "albumImage": "https://images.unsplash.com/photo-1556836234-6798bfd4f28f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80",
+          "songTitle": "rock and dance",
+          "artist": "Jerome"
+        },
+        {
+          "songId": 22,
+          "albumImage": "https://images.unsplash.com/photo-1526047932273-341f2a7631f9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80",
+          "songTitle": "Don't you see there",
+          "artist": "Kenneth"
+        },
+        {
+          "songId": 27,
+          "albumImage": "https://images.unsplash.com/photo-1641423914598-288fee6cecf2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80",
+          "songTitle": "Touching me",
+          "artist": "김선우"
+        },
+        {
+          "songId": 38,
+          "albumImage": "https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80",
+          "songTitle": "Like This",
+          "artist": "Edmund"
+        },
+        {
+          "songId": 39,
+          "albumImage": "https://images.unsplash.com/photo-1573247318242-1da549d9924f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80",
+          "songTitle": "Lucky Charm",
+          "artist": "Erica"
+        }
+      ]
+    },
+    {
+      "titleData": [
+        {
+          "playlistId": 9,
+          "playlistTitle": "파란색이 생각나는 플레이리스트",
+          "playlistSongsCount": "8",
+          "createdDate": "2022-09-24T11:25:41.000Z"
+        }
+      ],
+      "songsData": [
+        {
+          "songId": 21,
+          "albumImage": "https://images.unsplash.com/photo-1526047932273-341f2a7631f9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80",
+          "songTitle": "sing you in",
+          "artist": "Kenneth"
+        },
+        {
+          "songId": 24,
+          "albumImage": "https://images.unsplash.com/photo-1471890701797-59336a877de4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2930&q=80",
+          "songTitle": "The old willows",
+          "artist": "Lawrence"
+        },
+        {
+          "songId": 26,
+          "albumImage": "https://images.unsplash.com/photo-1471890701797-59336a877de4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2930&q=80",
+          "songTitle": "Use force",
+          "artist": "Lawrence"
+        },
+        {
+          "songId": 29,
+          "albumImage": "https://images.unsplash.com/photo-1611001476049-a59a2736d410?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80",
+          "songTitle": "Horrified",
+          "artist": "Oliver"
+        },
+        {
+          "songId": 38,
+          "albumImage": "https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80",
+          "songTitle": "Like This",
+          "artist": "Edmund"
+        },
+        {
+          "songId": 54,
+          "albumImage": "https://images.unsplash.com/photo-1573247318242-1da549d9924f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80",
+          "songTitle": "Time (Inst.)",
+          "artist": "Erica"
+        },
+        {
+          "songId": 55,
+          "albumImage": "https://images.unsplash.com/photo-1526047932273-341f2a7631f9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80",
+          "songTitle": "Shimmer",
+          "artist": "Kenneth"
+        },
+        {
+          "songId": 56,
+          "albumImage": "https://images.unsplash.com/photo-1526047932273-341f2a7631f9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80",
+          "songTitle": "Outside",
+          "artist": "Kenneth"
+        }
+      ]
+    }
+  ],
+  "recent": [
+    {
+      "albumId": 1,
+      "albumTitle": "When I'm With You",
+      "releaseDate": "2022-09-15T15:00:00.000Z",
+      "artistId": 1,
+      "artist": "김선우",
+      "scope": "국내"
+    },
+    {
+      "albumId": 2,
+      "albumTitle": "Home",
+      "releaseDate": "2022-09-14T15:00:00.000Z",
+      "artistId": 2,
+      "artist": "이도현",
+      "scope": "국내"
+    },
+    {
+      "albumId": 3,
+      "albumTitle": "Follow Me",
+      "releaseDate": "2022-09-13T15:00:00.000Z",
+      "artistId": 3,
+      "artist": "한수빈",
+      "scope": "국내"
+    },
+    {
+      "albumId": 4,
+      "albumTitle": "Talk That Way",
+      "releaseDate": "2022-09-06T15:00:00.000Z",
+      "artistId": 4,
+      "artist": "Irene",
+      "scope": "국내"
+    },
+    {
+      "albumId": 9,
+      "albumTitle": "Take Our Time",
+      "releaseDate": "2022-02-21T15:00:00.000Z",
+      "artistId": 7,
+      "artist": "Sabina",
+      "scope": "국내"
+    },
+    {
+      "albumId": 8,
+      "albumTitle": "Capsized",
+      "releaseDate": "2021-12-13T15:00:00.000Z",
+      "artistId": 7,
+      "artist": "Sabina",
+      "scope": "국내"
+    },
+    {
+      "albumId": 7,
+      "albumTitle": "Time",
+      "releaseDate": "2021-11-29T15:00:00.000Z",
+      "artistId": 11,
+      "artist": "Erica",
+      "scope": "해외"
+    },
+    {
+      "albumId": 10,
+      "albumTitle": "Promise",
+      "releaseDate": "2021-11-24T15:00:00.000Z",
+      "artistId": 8,
+      "artist": "Rachel Motherly",
+      "scope": "해외"
+    },
+    {
+      "albumId": 11,
+      "albumTitle": "Stay",
+      "releaseDate": "2021-10-14T15:00:00.000Z",
+      "artistId": 9,
+      "artist": "Rosemary time",
+      "scope": "해외"
+    },
+    {
+      "albumId": 5,
+      "albumTitle": "Pixie Dust",
+      "releaseDate": "2021-10-13T15:00:00.000Z",
+      "artistId": 5,
+      "artist": "Alicia",
+      "scope": "국내"
+    },
+    {
+      "albumId": 17,
+      "albumTitle": "Phoenix",
+      "releaseDate": "2021-08-19T15:00:00.000Z",
+      "artistId": 5,
+      "artist": "Alicia",
+      "scope": "국내"
+    },
+    {
+      "albumId": 6,
+      "albumTitle": "House Party",
+      "releaseDate": "2021-07-21T15:00:00.000Z",
+      "artistId": 6,
+      "artist": "Edmund",
+      "scope": "국내"
+    },
+    {
+      "albumId": 13,
+      "albumTitle": "Shimmer",
+      "releaseDate": "2021-07-12T15:00:00.000Z",
+      "artistId": 12,
+      "artist": "Kenneth",
+      "scope": "해외"
+    },
+    {
+      "albumId": 14,
+      "albumTitle": "Fly Again",
+      "releaseDate": "2021-05-06T15:00:00.000Z",
+      "artistId": 13,
+      "artist": "Lawrence",
+      "scope": "해외"
+    },
+    {
+      "albumId": 15,
+      "albumTitle": "Father",
+      "releaseDate": "2021-04-07T15:00:00.000Z",
+      "artistId": 14,
+      "artist": "Oliver",
+      "scope": "해외"
+    },
+    {
+      "albumId": 12,
+      "albumTitle": "20-21 days",
+      "releaseDate": "2021-03-11T15:00:00.000Z",
+      "artistId": 10,
+      "artist": "Jerome",
+      "scope": "해외"
+    },
+    {
+      "albumId": 16,
+      "albumTitle": "Shivers",
+      "releaseDate": "2020-12-16T15:00:00.000Z",
+      "artistId": 5,
+      "artist": "Alicia",
+      "scope": "국내"
+    },
+    {
+      "albumId": 18,
+      "albumTitle": "23",
+      "releaseDate": "2020-07-16T15:00:00.000Z",
+      "artistId": 14,
+      "artist": "Oliver",
+      "scope": "해외"
+    },
+    {
+      "albumId": 19,
+      "albumTitle": "Gravity",
+      "releaseDate": "2020-01-17T15:00:00.000Z",
+      "artistId": 14,
+      "artist": "Oliver",
+      "scope": "해외"
+    },
+    {
+      "albumId": 20,
+      "albumTitle": "Everything",
+      "releaseDate": "2018-05-01T15:00:00.000Z",
+      "artistId": 14,
+      "artist": "Oliver",
+      "scope": "해외"
+    }
+  ]
+}

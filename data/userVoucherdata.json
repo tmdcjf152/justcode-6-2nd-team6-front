@@ -1,0 +1,13 @@
+{
+  "data": [
+    {
+      "userId": 1,
+      "voucherId": 1,
+      "voucherName": "무제한 듣기+오프라인 재생",
+      "payment": "10,900",
+      "payWith": "네이버페이",
+      "paymentType": "정기결제",
+      "period": "2022.10.25 23:59:59 까지"
+    }
+  ]
+}

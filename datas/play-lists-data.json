@@ -1,0 +1,36 @@
+{
+  "data": [
+    {
+      "userId": 1,
+      "playlistId": 1,
+      "title": "가을을 기다리는 발라드",
+      "songTotalCount": "16",
+      "albumImage": "https://images.unsplash.com/photo-1641423914598-288fee6cecf2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80",
+      "createdAt": "2022.09.24"
+    },
+    {
+      "userId": 1,
+      "playlistId": 2,
+      "title": "가사에 조용히 귀 기울여 듣는 발라드",
+      "songTotalCount": "17",
+      "albumImage": "https://images.unsplash.com/photo-1587468820439-4c80fa8ec7c6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80",
+      "createdAt": "2022.09.24"
+    },
+    {
+      "userId": 1,
+      "playlistId": 3,
+      "title": "가을과 어울리는 편안한 감성 모음",
+      "songTotalCount": "14",
+      "albumImage": "https://images.unsplash.com/photo-1611001440648-e90aff42faa3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80",
+      "createdAt": "2022.09.24"
+    },
+    {
+      "userId": 1,
+      "playlistId": 12,
+      "title": "요리하면서 듣기 좋은 맛있는 노래 모음",
+      "songTotalCount": "9",
+      "albumImage": "https://images.unsplash.com/photo-1611001440648-e90aff42faa3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80",
+      "createdAt": "2022.09.24"
+    }
+  ]
+}

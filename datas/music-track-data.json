@@ -1,0 +1,37 @@
+[
+  {
+    "songId": 1,
+    "songTitle": "Morning Kiss",
+    "songArtist": "김현정",
+    "albumCover": "https://i.esdrop.com/d/f/WFi7Wlweew/MBH574A3dR.jpg",
+    "content": "https://drive.google.com/uc?export=download&songId=1ewGYXSphoWfFN2IGiHLalx07N5cR2OJb"
+  },
+  {
+    "songId": 2,
+    "songTitle": "HOW ARE YOU",
+    "songArtist": "김재영",
+    "albumCover": "https://i.esdrop.com/d/f/WFi7Wlweew/AskTWIUFRu.jpg",
+    "content": "https://drive.google.com/uc?export=download&songId=1NPP_edgnimk2i6C0Cd9DyOIas9V--bhj"
+  },
+  {
+    "songId": 3,
+    "songTitle": "Acoustic Breeze",
+    "songArtist": "Royalty Free Music from Bensound",
+    "albumCover": "https://i.esdrop.com/d/f/WFi7Wlweew/OevnP5nN0G.jpg",
+    "content": "https://www.bensound.com/bensound-music/bensound-acousticbreeze.mp3"
+  },
+  {
+    "songId": 4,
+    "songTitle": "Sunny",
+    "songArtist": "Royalty Free Music from Bensound",
+    "albumCover": "https://i.esdrop.com/d/f/WFi7Wlweew/X86zIqeUl3.jpg",
+    "content": "https://www.bensound.com/bensound-music/bensound-sunny.mp3"
+  },
+  {
+    "songId": 5,
+    "songTitle": "Tenderness",
+    "songArtist": "Royalty Free Music from Bensound",
+    "albumCover": "https://i.esdrop.com/d/f/WFi7Wlweew/0OYl90t4cC.jpg",
+    "content": "https://www.bensound.com/bensound-music/bensound-tenderness.mp3"
+  }
+]
