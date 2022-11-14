@@ -1,5 +1,4 @@
 {
-  "homepage": "http://tmdcjf152.github.io/justcode-6-2nd-team6-front",
   "name": "florida",
   "version": "0.1.0",
   "private": true,
@@ -32,10 +31,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "deploy": "gh-pages -d build",
-    "predeploy": "npm run build",
     "start": "react-scripts start",
-    "build": "CI= react-scripts build",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "distribute": "npm i && npm run build && pm2 serve build 3000 --name justcode-6-2nd-team6-front --spa"
@@ -59,8 +56,7 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^4.0.0",
-    "pm2": "^5.1.2",
-    "redux-devtools-extension": "^2.13.9"
+    "redux-devtools-extension": "^2.13.9",
+    "pm2": "^5.1.2"
   }
 }

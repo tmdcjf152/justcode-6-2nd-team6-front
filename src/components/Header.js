@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { AiOutlineSearch } from "react-icons/ai";
-import logo from '../Img/logo.png';
 import UserModal from "./UserModal";
 import styled from "@emotion/styled";
 
@@ -15,6 +14,10 @@ const Header = ({
   setIsLogin,
   isLogin,
   setMusicTracks,
+  headerShow,
+  setHeaderShow,
+  footerShow,
+  setFooterShow,
 }) => {
   const [toggle, setToggle] = useState(false);
   const logOut = () => {
@@ -30,7 +33,7 @@ const Header = ({
         {/* 로고박스 */}
         <div className="header-logo-box">
           <NavLink to="/" className="header-logo">
-            <img src={logo} alt="Florida로고" />
+            <img src="/Images/logo.png" alt="Florida로고" />
           </NavLink>
         </div>
 

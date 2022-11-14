@@ -1,147 +1,82 @@
-# 6 Team Project
+# 프로젝트 소개 🍫
 
-#### 클론사이트 : 플로(Flo)[https://www.music-flo.com/]
+![](https://velog.velcdn.com/images/jinyoung985/post/8f144a1a-2985-4b11-93cc-9d0da8e2c911/image.png)
 
-<br/>
+## 프로젝트명 FLOrida
 
-# 소개
+**FLO 클론 프로젝트입니다.**
 
-#### ✅ 무엇을 위한 프로젝트인가?
+**FLO official website clone project.**
 
-#### 지금까지 배운 기술을 응용하고 개발 실력을 향상 시키기 위한 목적을 가지고 있습니다.
-    - 다양한 기술과 라이브러리를 사용하고 사용법을 익히고 학습합니다.
-    - 서버통신을 통해 백엔드와 소통하는 방법을 배웁니다.
-    - 다양한 기능 구현을 해보며 기능이 어떻게 동작하는지 배웁니다.
+https://www.music-flo.com/
 
-<br/>
+**개발 기간**: 2022-09-19 ~ 2022-09-30 14:00
 
-# 기술 스택
+**개발 인원**: 6명
 
-> JavaScript
+**FE** : 김진영, 김충만, 임지영, 최승철
 
-> React
+**BE** : 김교은, 이신희
 
-> styled-components
+### GitHub 주소
+* [FLOrida FE](https://github.com/wecode-bootcamp-korea/justcode-6-2nd-team6-front)
+* [FLOrida BE](https://github.com/wecode-bootcamp-korea/justcode-6-2nd-team6-back)
 
-> Git
+## 적용 기술
+* FRONT : HTML, JAVASCRIPT, REACT, styled-components
+* 공통 : RESTful API, Github, Slack, Notion
 
-<br/>
+### 협업 도구
+Github, Slack, Notion, Naver Clova, zep, zoom
 
-# 프로젝트 설치 및 실행 방법
+## DB Modeling
+![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/6166ee03-3651-4dad-828e-e1bce806db0a/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221010%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221010T035344Z&X-Amz-Expires=86400&X-Amz-Signature=724a1bbf4cd0d28bef4443ede2f83c75bd4359b4d027d04e518919bda6a99bab&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
 
-✅ 설치방법
+## 멤버별 기능 분담
 
-1. Node.JS를 다운받아 설치해주세요. 
+**김진영**
 
-2. 리포지토리를 클론해주세요.
+* 음악 플레이어
+* 보관함
+* 보관함 상세페이지
 
-```
- git clone https://github.com/tmdcjf152/justcode-6-2nd-team6-front.git
-```
+**김충만**
 
-3. dependencies를 설치해주세요.
+* 메인
+* 플레이리스트, 앨범, 가수 상세페이지
 
-```
-npm install
-```
+**임지영**
 
-✅ 실행방법
+* 이용권 - 이용권탭 UI 및 조회 API
+* 이용권 - 제휴탭 UI
+* 이용권 - MY탭 UI 및 조회 API
+* 이용권 - 결제(모달)창 UI 및 POST API
 
-1. 다음 명령어를 이용해 Dev server를 실행해주세요.
 
-```
-npm start
-```
+**최승철**
 
-2. 브라우저에서 <http://localhost:3000>에 접속해주세요.
+* 로그인
+* 로그아웃
+* 둘러보기
+* 크리에이터 스튜디오
 
-<br/>
+## 후기
 
-# 저작권, 라이선스 정보
+**김진영**
 
-#### [이미지출처] Adobe
+* [블로그 게시글](https://velog.io/@jinyoung985/JUSTCODE-%EB%82%98%EC%9D%98-%EB%91%90-%EB%B2%88%EC%A7%B8-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8)에 작성했습니다.
 
-#### ✅ 모든 이미지의 저작권 Adobe에 있습니다.
+**김충만**
 
-<br/>
 
-# 주요기능 및 설명
+**임지영**
 
-## ✅ 로그인 페이지
-![로그인](https://user-images.githubusercontent.com/87900492/199234877-9b358fe6-4842-44a7-86b9-8b38b1d80e2d.gif)
+* [블로그 게시글](https://roxylife-twinkledawn101.tistory.com/36)에 작성했습니다.
 
-<br/>
+**최승철**
 
-## ✅ 약관동의 및 마케팅동의 페이지
-![체크박스](https://user-images.githubusercontent.com/87900492/199234891-71236675-4f2e-42d2-8846-3608ba8137a6.gif)
 
-<br/>
+## Reference
+이 프로젝트는 FLO 사이트를 참조하여 학습목적으로 만들었습니다. 학습용으로 만들었기 때문에 이 코드를 활용하여 이득을 취하거나 무단 배포할 경우 법적으로 문제될 수 있습니다.
 
-## ✅ 번호인증 페이지
-![번호인증](https://user-images.githubusercontent.com/87900492/199234884-70627456-6e17-4089-abf8-5e301758fea7.gif)
-
-<br/>
-
-## ✅ 회원가입 페이지
-![회원가입](https://user-images.githubusercontent.com/87900492/199235368-b57e7983-33d0-4850-b7fb-2a6c9530950e.gif)
-
-
-<br/>
-
-## ✅ 이용권 결제 페이지
-![결제](https://user-images.githubusercontent.com/87900492/199234872-62a2bfef-202b-457a-9854-30d8234e5445.gif)
-
-<br/>
-
-## ✅ 가수및 앨범 상세 페이지
-![가수상세페이지](https://user-images.githubusercontent.com/87900492/199234869-f7334d35-2e2b-4fd1-9be3-7ad5363bca1b.gif)
-
-<br/>
-
-## ✅ 뮤직플레이어 UI 및 재생기능
-![뮤직플레이어](https://user-images.githubusercontent.com/87900492/199234880-f460b7de-73b5-4d00-b531-9e26cdac737c.gif)
-
-<br/>
-
-## ✅ 음악 재생 기능
-![음악재생기능](https://user-images.githubusercontent.com/87900492/199234886-f397a9ec-3b40-4571-95f3-7cadccdeec10.gif)
-
-<br/>
-
-## ✅ 재생목록 추가 기능
-![재생목록추가](https://user-images.githubusercontent.com/87900492/199234889-b4770d2d-3707-443f-a92b-747187cd4ab2.gif)
-
-<br/>
-
-## ✅ 플레이 리스트 생성기능
-![플레이리스트 생성](https://user-images.githubusercontent.com/87900492/199235837-4cd3e308-a268-44e3-8571-5eb532c3d7d9.gif)
-
-<br/>
-
-## ✅ 크리에이터 스튜디오 페이지
-![크리에이터](https://user-images.githubusercontent.com/87900492/199236075-d6e15945-3387-40b9-998a-37484a4143c2.gif)
-
-<br/>
-
-
-
-
-# 정보
-
-### ✅ 팀원
-
-> 최승철 https://velog.io/@tmdcjf152
-
-> 김충만 https://eddiekeem.tistory.com/
- 
-> 김진영 https://velog.io/@jinyoung985
- 
-> 임지영 https://roxylife-twinkledawn101.tistory.com/
-
-> 이신희 https://velog.io/@shlee2227
-
-> 김교은 https://velog.io/@gyoeun666
-
-# 외부 리소스 정보
-
-
+This project was created for learning purposes by referring to the FLO site. Because it was made for learning, it can be a legal issue if you take advantage of this code or distribute it without permission.
