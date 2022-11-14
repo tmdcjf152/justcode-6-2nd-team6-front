@@ -56,7 +56,8 @@
     ]
   },
   "devDependencies": {
-    "redux-devtools-extension": "^2.13.9",
-    "pm2": "^5.1.2"
+    "gh-pages": "^4.0.0",
+    "pm2": "^5.1.2",
+    "redux-devtools-extension": "^2.13.9"
   }
 }
