@@ -35,7 +35,7 @@
     "deploy": "gh-pages -d build",
     "predeploy": "npm run build",
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "CI= react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "distribute": "npm i && npm run build && pm2 serve build 3000 --name justcode-6-2nd-team6-front --spa"
