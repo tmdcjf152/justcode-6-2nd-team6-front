@@ -1,32 +1,7 @@
-import styled from "styled-components";
 import { useEffect, useState } from "react";
+import styled from "styled-components";
 
-const StyledTest = styled.div`
-  .test {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-top: 100px;
 
-    .song-box {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-      height: 100px;
-      width: 200px;
-      padding: 10px;
-      margin: 10px;
-      background-color: #cccccc;
-      font-weight: 700;
-
-      .artist {
-        font-size: 12px;
-        margin: 10px 0;
-      }
-    }
-  }
-`;
 
 const Test = ({ musicTracks, setMusicTracks }) => {
   const [testSongs, setTestSongs] = useState([
@@ -75,3 +50,31 @@ const Test = ({ musicTracks, setMusicTracks }) => {
 };
 
 export default Test;
+
+
+const StyledTest = styled.div`
+  .test {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 100px;
+
+    .song-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      height: 100px;
+      width: 200px;
+      padding: 10px;
+      margin: 10px;
+      background-color: #cccccc;
+      font-weight: 700;
+
+      .artist {
+        font-size: 12px;
+        margin: 10px 0;
+      }
+    }
+  }
+`;

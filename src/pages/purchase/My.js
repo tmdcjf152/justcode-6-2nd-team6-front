@@ -5,6 +5,71 @@ import BuyMyVoucher from "../../components/purchase/BuyMyVoucher";
 import NoMyVoucher from "../../components/purchase/NoMyVoucher";
 import Loading from "../../components/Loading";
 
+
+const My = ({ token }) => {
+  const navigate = useNavigate();
+  const [userVoucher, setUserVoucher] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  // fetch('/data/userVoucherdata.json')
+  useEffect(() => {
+    fetch("http://13.125.174.118:8000/purchase/my", {
+      headers: { Authorization: sessionStorage.getItem("token") },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        setLoading(true);
+        if (res.data.length > 0) {
+          setUserVoucher(res.data[0]);
+        }
+      });
+  }, []);
+
+  return !loading ? (
+    <Loading />
+  ) : (
+    <StyledMy>
+      <div className="my-wrap">
+        {!token ? (
+          <div className="full-msg">
+            <div className="full-msg-cnt">
+              <strong className="text-black">로그인해주세요.</strong>
+              <span className="text-gray">
+                로그인하시면 더욱 더 다양한
+                <br />
+                FLOrida를 즐길 수 있어요.
+              </span>
+              <div
+                className="full-msg-btn"
+                onClick={() => {
+                  navigate("/login");
+                }}
+              >
+                <span>로그인</span>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="now-voucher-wrap">
+            <section className="my-voucher-section">
+              <h3 className="my-section-title">사용 중인 이용권</h3>
+              <div className="voucher-card">
+                {userVoucher.voucherId ? (
+                  <BuyMyVoucher userVoucher={userVoucher} />
+                ) : (
+                  <NoMyVoucher navigate={navigate} />
+                )}
+              </div>
+            </section>
+          </div>
+        )}
+      </div>
+    </StyledMy>
+  );
+};
+
+export default My;
+
 const StyledMy = styled.div`
   .my-wrap {
     padding-top: 40px;
@@ -74,67 +139,3 @@ const StyledMy = styled.div`
     }
   }
 `;
-
-const My = ({ token }) => {
-  const navigate = useNavigate();
-  const [userVoucher, setUserVoucher] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  // fetch('/data/userVoucherdata.json')
-  useEffect(() => {
-    fetch("http://3.34.53.252:8000/purchase/my", {
-      headers: { Authorization: sessionStorage.getItem("token") },
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        setLoading(true);
-        if (res.data.length > 0) {
-          setUserVoucher(res.data[0]);
-        }
-      });
-  }, []);
-
-  return !loading ? (
-    <Loading />
-  ) : (
-    <StyledMy>
-      <div className="my-wrap">
-        {!token ? (
-          <div className="full-msg">
-            <div className="full-msg-cnt">
-              <strong className="text-black">로그인해주세요.</strong>
-              <span className="text-gray">
-                로그인하시면 더욱 더 다양한
-                <br />
-                FLOrida를 즐길 수 있어요.
-              </span>
-              <div
-                className="full-msg-btn"
-                onClick={() => {
-                  navigate("/login");
-                }}
-              >
-                <span>로그인</span>
-              </div>
-            </div>
-          </div>
-        ) : (
-          <div className="now-voucher-wrap">
-            <section className="my-voucher-section">
-              <h3 className="my-section-title">사용 중인 이용권</h3>
-              <div className="voucher-card">
-                {userVoucher.voucherId ? (
-                  <BuyMyVoucher userVoucher={userVoucher} />
-                ) : (
-                  <NoMyVoucher navigate={navigate} />
-                )}
-              </div>
-            </section>
-          </div>
-        )}
-      </div>
-    </StyledMy>
-  );
-};
-
-export default My;

@@ -1,69 +1,9 @@
-import styled from '@emotion/styled';
 import React, { useEffect, useState } from 'react';
-import { Fade } from 'react-reveal';
 import { NavLink } from 'react-router-dom';
+import { Fade } from 'react-reveal';
+import styled from 'styled-components';
 
-const StyledGenre = styled.div`
-  .genre-inner-box {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 1280px;
-    margin: 0 auto;
-    padding: 100px 15px;
-    .genre-list-inner-box {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      margin-bottom: 50px;
-      /* 테마별 제목 */
-      .genre-title-text {
-        display: block;
-        font: bold 22px/1 'apple';
-        margin-bottom: 20px;
-      }
-      /* 버튼 inner box */
-      .genre-list-box {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        flex-wrap: wrap;
-        margin: 0 auto;
-        /* 버튼  */
-        .genre-list-item {
-          position: relative;
-          width: 215px;
-          height: 100px;
-          margin-right: 35px;
-          margin-bottom: 30px;
-          a {
-            display: block;
-            width: 100%;
-            height: 100%;
-            transform: scale(1);
-            transition: all 1s;
-            &:hover {
-              transform: scale(1.1);
-              transition: all 0.5s;
-            }
-            img {
-              width: 100%;
-              height: 100%;
-              border-radius: 7px;
-            }
-            span {
-              position: absolute;
-              top: 20px;
-              left: 20px;
-              font: 15px/1 'apple';
-              color: #fff;
-            }
-          }
-        }
-      }
-    }
-  }
-`;
+
 
 const Genre = () => {
   const [genre, setGenre] = useState('');
@@ -72,7 +12,7 @@ const Genre = () => {
   const [audio, setAudio] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:3000/data/genredata.json')
+    fetch('/data/genredata.json')
       .then((res) => res.json())
       .then((res) => {
         setGenre({ data: res.cards.genre });
@@ -176,3 +116,65 @@ const Genre = () => {
 };
 
 export default Genre;
+
+const StyledGenre = styled.div`
+  .genre-inner-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 1280px;
+    margin: 0 auto;
+    padding: 100px 15px;
+    .genre-list-inner-box {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      margin-bottom: 50px;
+      /* 테마별 제목 */
+      .genre-title-text {
+        display: block;
+        font: bold 22px/1 'apple';
+        margin-bottom: 20px;
+      }
+      /* 버튼 inner box */
+      .genre-list-box {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        margin: 0 auto;
+        /* 버튼  */
+        .genre-list-item {
+          position: relative;
+          width: 215px;
+          height: 100px;
+          margin-right: 35px;
+          margin-bottom: 30px;
+          a {
+            display: block;
+            width: 100%;
+            height: 100%;
+            transform: scale(1);
+            transition: all 1s;
+            &:hover {
+              transform: scale(1.1);
+              transition: all 0.5s;
+            }
+            img {
+              width: 100%;
+              height: 100%;
+              border-radius: 7px;
+            }
+            span {
+              position: absolute;
+              top: 20px;
+              left: 20px;
+              font: 15px/1 'apple';
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+`;

@@ -1,7 +1,61 @@
 import { useEffect, useRef } from "react";
-import styled from "styled-components";
 import AudioPlayer from "react-h5-audio-player";
+import styled from "styled-components";
 import "react-h5-audio-player/lib/styles.css";
+
+
+
+const MusicPlayer = ({
+  trackIndex,
+  setTrackIndex,
+  musicTracks,
+  setMusicTracks,
+  isExpandedClicked,
+}) => {
+  const handleClickPrevious = () => {
+    setTrackIndex((currentTrack) =>
+      currentTrack === 0 ? musicTracks.length - 1 : currentTrack - 1
+    );
+  };
+
+  const handleClickNext = () => {
+    setTrackIndex((currentTrack) =>
+      currentTrack < musicTracks.length - 1 ? currentTrack + 1 : 0
+    );
+  };
+
+  const player = useRef();
+
+  useEffect(() => {
+    setTimeout(() => player.current.audio.current.pause(), 10);
+  }, []);
+
+  return (
+    <StyledMusicPlayer>
+      <div
+        className={
+          isExpandedClicked
+            ? "expand-player-inner-box"
+            : "music-player-inner-box"
+        }
+      >
+        <AudioPlayer
+          src={musicTracks.length === 0 ? "" : musicTracks[trackIndex].content}
+          showSkipControls={true}
+          showJumpControls={false}
+          layout={isExpandedClicked ? "stack" : "stacked-reverse"}
+          volume={0.5}
+          onClickPrevious={handleClickPrevious}
+          onClickNext={handleClickNext}
+          onEnded={handleClickNext}
+          ref={player}
+        />
+      </div>
+    </StyledMusicPlayer>
+  );
+};
+
+export default MusicPlayer;
 
 const StyledMusicPlayer = styled.div`
   .music-player-inner-box {
@@ -173,55 +227,3 @@ const StyledMusicPlayer = styled.div`
     }
   }
 `;
-
-const MusicPlayer = ({
-  trackIndex,
-  setTrackIndex,
-  musicTracks,
-  setMusicTracks,
-  isExpandedClicked,
-}) => {
-  const handleClickPrevious = () => {
-    setTrackIndex((currentTrack) =>
-      currentTrack === 0 ? musicTracks.length - 1 : currentTrack - 1
-    );
-  };
-
-  const handleClickNext = () => {
-    setTrackIndex((currentTrack) =>
-      currentTrack < musicTracks.length - 1 ? currentTrack + 1 : 0
-    );
-  };
-
-  const player = useRef();
-
-  useEffect(() => {
-    setTimeout(() => player.current.audio.current.pause(), 10);
-  }, []);
-
-  return (
-    <StyledMusicPlayer>
-      <div
-        className={
-          isExpandedClicked
-            ? "expand-player-inner-box"
-            : "music-player-inner-box"
-        }
-      >
-        <AudioPlayer
-          src={musicTracks.length === 0 ? "" : musicTracks[trackIndex].content}
-          showSkipControls={true}
-          showJumpControls={false}
-          layout={isExpandedClicked ? "stack" : "stacked-reverse"}
-          volume={0.5}
-          onClickPrevious={handleClickPrevious}
-          onClickNext={handleClickNext}
-          onEnded={handleClickNext}
-          ref={player}
-        />
-      </div>
-    </StyledMusicPlayer>
-  );
-};
-
-export default MusicPlayer;

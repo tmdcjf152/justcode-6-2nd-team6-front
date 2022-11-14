@@ -1,14 +1,14 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
 import React, { useState, useEffect } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import Playbar from "../components/playbar/Playbar";
 import Login from "./login/Login";
 import Certification from "./signup/Certification";
 import Signform from "./signup/Signform";
 import Signup from "./signup/Signup";
 import Terms from "./signup/Terms";
 import Test from "./Test";
-import Playbar from "../components/playbar/Playbar";
 import Purchase from "./purchase/Purchase";
 import Voucher from "./purchase/Voucher";
 import Affiliate from "./purchase/Affiliate";

@@ -1,11 +1,159 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
-import styled from "styled-components";
 import { BsFillPlayFill } from "react-icons/bs";
 import { RiPlayListAddFill } from "react-icons/ri";
 import { RiFolderAddLine } from "react-icons/ri";
 import { BsSuitHeart } from "react-icons/bs";
 import { AiOutlineStop } from "react-icons/ai";
+import styled from "styled-components";
+
+
+
+const SongDetail = ({ musicTracks, setMusicTracks, setAlertOn }) => {
+  const [songData, setSongData] = useState([]);
+  const params = useParams();
+
+
+  useEffect(() => {
+    fetch(`http://3.34.53.252:8000/detail/track/${params.songId}`, {
+      method: "GET",
+      headers: { "content-type": "application/json" },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setSongData(data[0]);
+
+      });
+  }, []);
+  return (
+    <StyledSong>
+      <section className="album-detail-inner-box">
+        <div className="album-detail-wrap">
+          <div className="album-detail-inner">
+            <h2 className="hidden"> 컨텐츠 상세보기</h2>
+            <div className="album-detail-cover">
+              <img
+                alt="앨범 표지"
+                className="album-detail-cover-img"
+                src={songData.albumCover}
+              />
+              <button
+                title="앨범 듣기"
+                className="album-detail-play hover"
+                onClick={() => {
+                  if (songData.songTitle !== null) {
+                    fetch(
+                      `http://3.34.53.252:8000/play/addsongs/song/${params.songId}`,
+                      {
+                        headers: {
+                          Authorization: sessionStorage.getItem("token"),
+                        },
+                      }
+                    )
+                      .then((res) => res.json())
+                      .then((plData) => {
+                        const musicTracksId = musicTracks.map(
+                          (el) => el.songId
+                        );
+                        const filteredNewTracks = plData.filter(
+                          (el, i) => musicTracksId.includes(el.songId) === false
+                        );
+                        setMusicTracks([...filteredNewTracks, ...musicTracks]);
+                        setAlertOn(
+                          "현재 재생목록에 추가되었습니다. 중복된 곡은 제외됩니다."
+                        );
+                      })
+                      .catch((err) => {
+                        if (sessionStorage.getItem("token") !== null)
+                          setAlertOn(
+                            "이용권을 구매해야 음악 재생 서비스를 이용하실 수 있습니다."
+                          );
+                      });
+                  }
+                }}
+              >
+                <BsFillPlayFill className="album-detail-play-icon" />
+              </button>
+            </div>
+          </div>
+          {/* 상세 페이지 앨범 제목 및 가수 */}
+          <div className="album-detail-inner-box">
+            <div className="album-detail-title">{songData.songTitle}</div>
+            <Link
+              to={`/detail/artist/${songData.artistId}/songs`}
+              className="album-detail-singer"
+            >
+              <span className="hover">{songData.songArtist}</span>
+              <img
+                alt="아티스트"
+                className="album-detail-icon-next"
+                src="/Images/next.png"
+              />
+            </Link>
+            <Link
+              to={`/detail/album/${songData.albumId}/details`}
+              className="album-name"
+            >
+              <span className="hover">{songData.albumTitle}</span>
+              <img
+                alt="앨범"
+                className="album-icon-next"
+                src="/Images/next.png"
+              />
+            </Link>
+            <div className="album-detail-icon">
+              <RiPlayListAddFill className="album-detail-icon-list hover" />
+              <RiFolderAddLine className="album-detail-icon-folder hover" />
+              <BsSuitHeart className="album-detail-icon-like hover" />
+              <AiOutlineStop className="album-detail-icon-dislike hover" />
+            </div>
+          </div>
+        </div>
+      </section>
+      <div className="detail-info-inner-box">
+        {/* 상세 페이지 탭 */}
+        <div className="album-detail-page-tab">
+          <div className="focus-on">상세정보</div>
+        </div>
+        <div className="detail-info-wrap">
+          <ul className="detail-info-list-box">
+            <li className="detail-info-list">
+              <span className="detail-info-album-name">곡명</span>
+              <span className="stick" />
+              <span className="detail-info-album-singer">
+                {songData.songTitle}
+              </span>
+            </li>
+            <li className="detail-info-list">
+              <span className="detail-info-album-name">작곡</span>
+              <span className="stick" />
+              <span className="detail-info-album-singer">
+                {songData.musicBy}
+              </span>
+            </li>
+            <li className="detail-info-list">
+              <span className="detail-info-album-name">작사</span>
+              <span className="stick" />
+              <span className="detail-info-album-singer">
+                {songData.lyricsBy}
+              </span>
+            </li>
+            <li className="detail-info-list">
+              <span className="detail-info-album-name">편곡</span>
+              <span className="stick" />
+              <span className="detail-info-album-singer">
+                {songData.musicBy}
+              </span>
+            </li>
+            <li className="lyrics">{songData.lyrics}</li>
+          </ul>
+        </div>
+      </div>
+    </StyledSong>
+  );
+};
+
+export default SongDetail;
 
 const StyledSong = styled.section`
   padding-top: 40px;
@@ -218,150 +366,3 @@ const StyledSong = styled.section`
     }
   }
 `;
-
-const SongDetail = ({ musicTracks, setMusicTracks, setAlertOn }) => {
-  const [songData, setSongData] = useState([]);
-  const [trackData, setTrackData] = useState([]);
-  const params = useParams();
-  const location = useLocation();
-
-  useEffect(() => {
-    fetch(`http://3.34.53.252:8000/detail/track/${params.songId}`, {
-      method: "GET",
-      headers: { "content-type": "application/json" },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setSongData(data[0]);
-        console.log(data);
-      });
-  }, []);
-  return (
-    <StyledSong>
-      <section className="album-detail-inner-box">
-        <div className="album-detail-wrap">
-          <div className="album-detail-inner">
-            <h2 className="hidden"> 컨텐츠 상세보기</h2>
-            <div className="album-detail-cover">
-              <img
-                alt="앨범 표지"
-                className="album-detail-cover-img"
-                src={songData.albumCover}
-              />
-              <button
-                title="앨범 듣기"
-                className="album-detail-play hover"
-                onClick={() => {
-                  if (songData.songTitle !== null) {
-                    fetch(
-                      `http://3.34.53.252:8000/play/addsongs/song/${params.songId}`,
-                      {
-                        headers: {
-                          Authorization: sessionStorage.getItem("token"),
-                        },
-                      }
-                    )
-                      .then((res) => res.json())
-                      .then((plData) => {
-                        const musicTracksId = musicTracks.map(
-                          (el) => el.songId
-                        );
-                        const filteredNewTracks = plData.filter(
-                          (el, i) => musicTracksId.includes(el.songId) === false
-                        );
-                        setMusicTracks([...filteredNewTracks, ...musicTracks]);
-                        setAlertOn(
-                          "현재 재생목록에 추가되었습니다. 중복된 곡은 제외됩니다."
-                        );
-                      })
-                      .catch((err) => {
-                        if (sessionStorage.getItem("token") !== null)
-                          setAlertOn(
-                            "이용권을 구매해야 음악 재생 서비스를 이용하실 수 있습니다."
-                          );
-                      });
-                  }
-                }}
-              >
-                <BsFillPlayFill className="album-detail-play-icon" />
-              </button>
-            </div>
-          </div>
-          {/* 상세 페이지 앨범 제목 및 가수 */}
-          <div className="album-detail-inner-box">
-            <div className="album-detail-title">{songData.songTitle}</div>
-            <Link
-              to={`/detail/artist/${songData.artistId}/songs`}
-              className="album-detail-singer"
-            >
-              <span className="hover">{songData.songArtist}</span>
-              <img
-                alt="아티스트"
-                className="album-detail-icon-next"
-                src="/Images/next.png"
-              />
-            </Link>
-            <Link
-              to={`/detail/album/${songData.albumId}/details`}
-              className="album-name"
-            >
-              <span className="hover">{songData.albumTitle}</span>
-              <img
-                alt="앨범"
-                className="album-icon-next"
-                src="/Images/next.png"
-              />
-            </Link>
-            <div className="album-detail-icon">
-              <RiPlayListAddFill className="album-detail-icon-list hover" />
-              <RiFolderAddLine className="album-detail-icon-folder hover" />
-              <BsSuitHeart className="album-detail-icon-like hover" />
-              <AiOutlineStop className="album-detail-icon-dislike hover" />
-            </div>
-          </div>
-        </div>
-      </section>
-      <div className="detail-info-inner-box">
-        {/* 상세 페이지 탭 */}
-        <div className="album-detail-page-tab">
-          <div className="focus-on">상세정보</div>
-        </div>
-        <div className="detail-info-wrap">
-          <ul className="detail-info-list-box">
-            <li className="detail-info-list">
-              <span className="detail-info-album-name">곡명</span>
-              <span className="stick" />
-              <span className="detail-info-album-singer">
-                {songData.songTitle}
-              </span>
-            </li>
-            <li className="detail-info-list">
-              <span className="detail-info-album-name">작곡</span>
-              <span className="stick" />
-              <span className="detail-info-album-singer">
-                {songData.musicBy}
-              </span>
-            </li>
-            <li className="detail-info-list">
-              <span className="detail-info-album-name">작사</span>
-              <span className="stick" />
-              <span className="detail-info-album-singer">
-                {songData.lyricsBy}
-              </span>
-            </li>
-            <li className="detail-info-list">
-              <span className="detail-info-album-name">편곡</span>
-              <span className="stick" />
-              <span className="detail-info-album-singer">
-                {songData.musicBy}
-              </span>
-            </li>
-            <li className="lyrics">{songData.lyrics}</li>
-          </ul>
-        </div>
-      </div>
-    </StyledSong>
-  );
-};
-
-export default SongDetail;

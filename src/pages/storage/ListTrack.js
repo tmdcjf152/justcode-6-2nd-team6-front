@@ -1,9 +1,87 @@
 import styled from "styled-components";
 import Loading from "../../components/Loading";
-import CircularProgress from "@mui/material/CircularProgress";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import MusicContainer from "./MusicContainer";
+
+
+
+const ListTrack = ({
+  musicTracks,
+  setMusicTracks,
+  setAlertOn,
+  isLogin,
+}) => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [isMyPlayListClicked, setIsMyPlayListClicked] = useState(false);
+  const [isSelectClicked, setIsSelectClicked] = useState(false);
+  const [checkedList, setCheckedList] = useState([]);
+  const [playlistSongs, setPlaylistSongs] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+
+
+  useEffect(() => {
+    setLoading(false);
+    fetch(`http://3.34.53.252:8000${location.pathname}`, {
+      headers: {
+        Authorization: sessionStorage.getItem("token"),
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setLoading(true);
+        setPlaylistSongs(data);
+      });
+    setIsSelectClicked(false);
+  }, [location.pathname]);
+
+  return (
+    <StyledListTrack>
+      <div className="my-list-inner-box">
+        {isLogin === false ? (
+          <div className="full-msg">
+            <div className="full-msg-cnt">
+              <strong className="text-black">로그인해주세요.</strong>
+              <span className="text-gray">
+                로그인하시면 더욱 더 다양한
+                <br />
+                FLOrida를 즐길 수 있어요.
+              </span>
+              <div
+                className="full-msg-btn"
+                onClick={() => {
+                  navigate("/login");
+                }}
+              >
+                <span>로그인</span>
+              </div>
+            </div>
+          </div>
+        ) : !loading ? (
+          <Loading />
+        ) : (
+          <MusicContainer
+            playlistSongs={playlistSongs}
+            setPlaylistSongs={setPlaylistSongs}
+            musicTracks={musicTracks}
+            setMusicTracks={setMusicTracks}
+            setAlertOn={setAlertOn}
+            isMyPlayListClicked={isMyPlayListClicked}
+            setIsMyPlayListClicked={setIsMyPlayListClicked}
+            isSelectClicked={isSelectClicked}
+            setIsSelectClicked={setIsSelectClicked}
+            checkedList={checkedList}
+            setCheckedList={setCheckedList}
+          />
+        )}
+      </div>
+    </StyledListTrack>
+  );
+};
+
+export default ListTrack;
 
 const StyledListTrack = styled.div`
   .full-msg {
@@ -58,85 +136,3 @@ const StyledListTrack = styled.div`
     width: 1280px;
   }
 `;
-
-const ListTrack = ({
-  musicTracks,
-  setMusicTracks,
-  setAlertOn,
-  isExpandedClicked,
-  isLogin,
-  isLiked,
-}) => {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const [isMyPlayListClicked, setIsMyPlayListClicked] = useState(false);
-  const [isSelectClicked, setIsSelectClicked] = useState(false);
-  const [checkedList, setCheckedList] = useState([]);
-  const [playlistSongs, setPlaylistSongs] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  console.log(location.pathname);
-
-  console.log(`http://3.34.53.252:8000${location.pathname}`);
-
-  useEffect(() => {
-    setLoading(false);
-    fetch(`http://3.34.53.252:8000${location.pathname}`, {
-      headers: {
-        Authorization: sessionStorage.getItem("token"),
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data, "ListTrack!");
-        setLoading(true);
-        setPlaylistSongs(data);
-      });
-    setIsSelectClicked(false);
-  }, [location.pathname]);
-
-  return (
-    <StyledListTrack>
-      <div className="my-list-inner-box">
-        {isLogin === false ? (
-          <div className="full-msg">
-            <div className="full-msg-cnt">
-              <strong className="text-black">로그인해주세요.</strong>
-              <span className="text-gray">
-                로그인하시면 더욱 더 다양한
-                <br />
-                FLOrida를 즐길 수 있어요.
-              </span>
-              <div
-                className="full-msg-btn"
-                onClick={() => {
-                  navigate("/login");
-                }}
-              >
-                <span>로그인</span>
-              </div>
-            </div>
-          </div>
-        ) : !loading ? (
-          <Loading />
-        ) : (
-          <MusicContainer
-            playlistSongs={playlistSongs}
-            setPlaylistSongs={setPlaylistSongs}
-            musicTracks={musicTracks}
-            setMusicTracks={setMusicTracks}
-            setAlertOn={setAlertOn}
-            isMyPlayListClicked={isMyPlayListClicked}
-            setIsMyPlayListClicked={setIsMyPlayListClicked}
-            isSelectClicked={isSelectClicked}
-            setIsSelectClicked={setIsSelectClicked}
-            checkedList={checkedList}
-            setCheckedList={setCheckedList}
-          />
-        )}
-      </div>
-    </StyledListTrack>
-  );
-};
-
-export default ListTrack;

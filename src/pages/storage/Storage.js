@@ -1,59 +1,10 @@
-import styled from "styled-components";
-import { Fade } from "react-reveal";
 import { useState, useEffect } from "react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
-import { HiOutlineHeart, HiHeart } from "react-icons/hi"; // player like
+import { Fade } from "react-reveal";
+import { HiOutlineHeart } from "react-icons/hi"; // player like
+import styled from "styled-components";
 
-const StyledStorage = styled.div`
-  display: flex;
-  align-items: flex;
-  justify-content: center;
 
-  .storage-inner-box {
-    padding-top: 150px;
-    font-family: "NanumBarunGothic", sans-serif;
-    width: 1280px;
-
-    .menu-list {
-      display: flex;
-      align-items: center;
-      height: 38px;
-      border-bottom: 1.5px solid #eeeeee;
-
-      .selected-list {
-        display: flex;
-        align-items: center;
-        height: 40px;
-        padding: 10px;
-        color: #3f3fff;
-        border-bottom: 2px solid #3f3fff;
-        font-weight: 700;
-        cursor: pointer;
-
-        .icon {
-          margin-right: 2px;
-        }
-      }
-
-      .list {
-        display: flex;
-        align-items: center;
-        height: 40px;
-        margin: 0 10px;
-        color: black;
-        cursor: pointer;
-
-        &:hover {
-          color: #3f3fff;
-        }
-
-        .icon {
-          margin-right: 2px;
-        }
-      }
-    }
-  }
-`;
 
 const Storage = () => {
   const location = useLocation();
@@ -152,3 +103,54 @@ const Storage = () => {
 };
 
 export default Storage;
+
+const StyledStorage = styled.div`
+  display: flex;
+  align-items: flex;
+  justify-content: center;
+
+  .storage-inner-box {
+    padding-top: 150px;
+    font-family: "NanumBarunGothic", sans-serif;
+    width: 1280px;
+
+    .menu-list {
+      display: flex;
+      align-items: center;
+      height: 38px;
+      border-bottom: 1.5px solid #eeeeee;
+
+      .selected-list {
+        display: flex;
+        align-items: center;
+        height: 40px;
+        padding: 10px;
+        color: #3f3fff;
+        border-bottom: 2px solid #3f3fff;
+        font-weight: 700;
+        cursor: pointer;
+
+        .icon {
+          margin-right: 2px;
+        }
+      }
+
+      .list {
+        display: flex;
+        align-items: center;
+        height: 40px;
+        margin: 0 10px;
+        color: black;
+        cursor: pointer;
+
+        &:hover {
+          color: #3f3fff;
+        }
+
+        .icon {
+          margin-right: 2px;
+        }
+      }
+    }
+  }
+`;

@@ -1,6 +1,67 @@
 import React from 'react';
-import styled from 'styled-components';
 import VoucherCard from '../../components/purchase/VoucherCard';
+import styled from 'styled-components';
+
+
+
+const Voucher = () => {
+  return (
+    <StyledVoucher>
+      <div className='voucher-wrap'>
+        <ul className='voucher-cardlist'>
+          <li>
+            <div className='voucher-carditem voucher-banner'>
+              <div className='voucher-banner-text'>
+                <span className='banner-text'>
+                  FLOrida 첫구매라면{' '}
+                  <span className='color-mint'>첫 달 100원!</span>
+                </span>
+              </div>
+              <div className='voucher-banner-item'>
+                <div className='card-left'>
+                  <h3 className='name'>(첫 구매) 무제한 듣기 정기결제</h3>
+                </div>
+                <div className='card-right'>
+                  <ul className='voucher-list-sub'>
+                    <li>
+                      <div className='item'>
+                        <div className='item-right'>
+                          <span className='price-box'>
+                            <del className='first-cost'>정가 8,000원</del>
+                            <span className='price'>
+                              <em>100</em>원
+                            </span>
+                          </span>
+                          <button type='button' className='btn-buy'>
+                            구매
+                          </button>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <button type='button' className='btn-detail'>
+                  이용권 자세히보기
+                  <img
+                    alt='화살표'
+                    src='/Images/next.png'
+                    className='next-arrow-img'
+                  />
+                </button>
+              </div>
+            </div>
+          </li>
+          <VoucherCard />
+        </ul>
+        <div className='pass-notice'>
+          <h3 className='notice-title'>이용권 유의사항</h3>
+        </div>
+      </div>
+    </StyledVoucher>
+  );
+};
+
+export default Voucher;
 
 const StyledVoucher = styled.div`
   .voucher-wrap {
@@ -175,62 +236,3 @@ const StyledVoucher = styled.div`
     }
   }
 `;
-
-const Voucher = () => {
-  return (
-    <StyledVoucher>
-      <div className='voucher-wrap'>
-        <ul className='voucher-cardlist'>
-          <li>
-            <div className='voucher-carditem voucher-banner'>
-              <div className='voucher-banner-text'>
-                <span className='banner-text'>
-                  FLOrida 첫구매라면{' '}
-                  <span className='color-mint'>첫 달 100원!</span>
-                </span>
-              </div>
-              <div className='voucher-banner-item'>
-                <div className='card-left'>
-                  <h3 className='name'>(첫 구매) 무제한 듣기 정기결제</h3>
-                </div>
-                <div className='card-right'>
-                  <ul className='voucher-list-sub'>
-                    <li>
-                      <div className='item'>
-                        <div className='item-right'>
-                          <span className='price-box'>
-                            <del className='first-cost'>정가 8,000원</del>
-                            <span className='price'>
-                              <em>100</em>원
-                            </span>
-                          </span>
-                          <button type='button' className='btn-buy'>
-                            구매
-                          </button>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-                <button type='button' className='btn-detail'>
-                  이용권 자세히보기
-                  <img
-                    alt='화살표'
-                    src='/Images/next.png'
-                    className='next-arrow-img'
-                  />
-                </button>
-              </div>
-            </div>
-          </li>
-          <VoucherCard />
-        </ul>
-        <div className='pass-notice'>
-          <h3 className='notice-title'>이용권 유의사항</h3>
-        </div>
-      </div>
-    </StyledVoucher>
-  );
-};
-
-export default Voucher;

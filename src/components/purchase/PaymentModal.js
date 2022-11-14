@@ -1,6 +1,103 @@
 import React from "react";
-import styled from "styled-components";
+import { Link } from 'react-router-dom';
 import PaymentTerms from "./PaymentTerms";
+import styled from "styled-components";
+
+
+const PaymentModal = ({
+  setModalOpen,
+  voucherName,
+  paymentName,
+  originPrice,
+  salePrice,
+  paymentType,
+  voucherId,
+}) => {
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+  return (
+    <StyledPaymentModal>
+      <div className="payment-inner-box">
+        <div className="payment-wrapper">
+          <div className="payment-modal">
+            <span onClick={closeModal} className="modal-close">
+              X
+            </span>
+            <h1 className="payment-title">이용권 구매</h1>
+            <div className="payment-form">
+              <h3 className="payment-form-title">
+                <span>
+                  {voucherName} {paymentName}
+                </span>
+              </h3>
+              <div className="payment-form-membership">
+                {paymentName === "T멤버십" ? (
+                  <div className="membership">
+                    <div className="membership-header">
+                      <p className="membership-bi">T멤버십 적용</p>
+                    </div>
+                    <div className="membership-policy">
+                      <div className="membership-check">
+                        <input
+                          type="checkbox"
+                          id="checkPolicy"
+                          name="checkPolicy"
+                        />
+                        <label htmlFor="checkPolicy"></label>
+                        <span>개인정보 제3자 제공 동의</span>
+                        <Link target="_blank" className="btn-view">
+                          보기
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                ) : null}
+              </div>
+              <div className="payment-form-sum">
+                <ul className="list-sum">
+                  {paymentName !== "1개월권" && (
+                    <li>
+                      <span className="th">기본 결제 금액</span>
+                      <span className="td">
+                        <em>{originPrice}</em>원
+                      </span>
+                    </li>
+                  )}
+                  {paymentName === "정기결제" ? (
+                    <li>
+                      <span className="th emColor">할인적용</span>
+                      <span className="td emColor">
+                        <em>-100</em>원
+                      </span>
+                    </li>
+                  ) : null}
+                  <li className="final">
+                    <span className="th">최종 결제금액</span>
+                    <span className="td price">
+                      <span className="discounted">
+                        <em>{salePrice}</em>원
+                      </span>
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <PaymentTerms
+              closeModal={closeModal}
+              salePrice={salePrice}
+              paymentType={paymentType}
+              voucherId={voucherId}
+            />
+          </div>
+        </div>
+      </div>
+    </StyledPaymentModal>
+  );
+};
+
+export default PaymentModal;
 
 const StyledPaymentModal = styled.div`
   .payment-inner-box {
@@ -185,98 +282,3 @@ const StyledPaymentModal = styled.div`
     }
   }
 `;
-
-const PaymentModal = ({
-  setModalOpen,
-  voucherName,
-  paymentName,
-  originPrice,
-  salePrice,
-  paymentType,
-  voucherId,
-}) => {
-  const closeModal = () => {
-    setModalOpen(false);
-  };
-
-  return (
-    <StyledPaymentModal>
-      <div className="payment-inner-box">
-        <div className="payment-wrapper">
-          <div className="payment-modal">
-            <span onClick={closeModal} className="modal-close">
-              X
-            </span>
-            <h1 className="payment-title">이용권 구매</h1>
-            <div className="payment-form">
-              <h3 className="payment-form-title">
-                <span>
-                  {voucherName} {paymentName}
-                </span>
-              </h3>
-              <div className="payment-form-membership">
-                {paymentName === "T멤버십" ? (
-                  <div className="membership">
-                    <div className="membership-header">
-                      <p className="membership-bi">T멤버십 적용</p>
-                    </div>
-                    <div className="membership-policy">
-                      <div className="membership-check">
-                        <input
-                          type="checkbox"
-                          id="checkPolicy"
-                          name="checkPolicy"
-                        />
-                        <label htmlFor="checkPolicy"></label>
-                        <span>개인정보 제3자 제공 동의</span>
-                        <a target="_blank" className="btn-view">
-                          보기
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                ) : null}
-              </div>
-              <div className="payment-form-sum">
-                <ul className="list-sum">
-                  {paymentName !== "1개월권" && (
-                    <li>
-                      <span className="th">기본 결제 금액</span>
-                      <span className="td">
-                        <em>{originPrice}</em>원
-                      </span>
-                    </li>
-                  )}
-                  {paymentName === "정기결제" ? (
-                    <li>
-                      <span className="th emColor">할인적용</span>
-                      <span className="td emColor">
-                        <em>-100</em>원
-                      </span>
-                    </li>
-                  ) : null}
-                  <li className="final">
-                    <span className="th">최종 결제금액</span>
-                    <span className="td price">
-                      <span className="discounted">
-                        <em>{salePrice}</em>원
-                      </span>
-                    </span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <PaymentTerms
-              closeModal={closeModal}
-              salePrice={salePrice}
-              paymentType={paymentType}
-              voucherId={voucherId}
-            />
-          </div>
-        </div>
-      </div>
-    </StyledPaymentModal>
-  );
-};
-
-export default PaymentModal;

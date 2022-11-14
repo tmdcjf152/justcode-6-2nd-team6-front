@@ -1,87 +1,11 @@
 import { useState, useEffect } from "react";
-import styled from "styled-components";
-import Dialog from "@mui/material/Dialog";
 import { AiOutlinePlus } from "react-icons/ai";
-import { notInitialized } from "react-redux/es/utils/useSyncExternalStore";
 import axios from "axios";
+import Dialog from "@mui/material/Dialog";
+import styled from "styled-components";
 
-const StyledDialog = styled(Dialog)`
-  && {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: "NanumBarunGothic", sans-serif;
 
-    .my-play-list-inner-box {
-      display: flex;
-      flex-direction: column;
-      width: 525px;
-      padding: 30px;
-      border-radius: 5px;
-      background-color: white;
 
-      .title {
-        padding-bottom: 25px;
-        font-size: 18px;
-        font-weight: 700;
-      }
-
-      .play-lists {
-        overflow-y: auto;
-        max-height: 400px;
-      }
-
-      .add-list-box {
-        display: flex;
-        align-items: center;
-        height: 80px;
-        border-bottom: 1px solid #f2f2f2;
-        color: #3f3fff;
-        cursor: pointer;
-
-        .add-list-cover {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          height: 60px;
-          width: 60px;
-          margin-right: 15px;
-          border-radius: 5px;
-          background-color: #dedede;
-          font-size: 30px;
-        }
-        .add-list {
-          font-weight: bold;
-        }
-      }
-    }
-
-    .play-list-bar-inner-box {
-      display: flex;
-      align-items: center;
-      height: 80px;
-      border-bottom: 1px solid #f2f2f2;
-      cursor: pointer;
-
-      .cover {
-        height: 60px;
-        width: 60px;
-        margin-right: 15px;
-        border-radius: 5px;
-      }
-
-      .album-title {
-        margin-bottom: 10px;
-        font-weight: 700;
-      }
-
-      .num {
-        color: #969696;
-        font-size: 14px;
-      }
-    }
-  }
-`;
 
 const MyPlayList = ({
   isMyPlayListClicked,
@@ -107,7 +31,7 @@ const MyPlayList = ({
   const [update, setUpdate] = useState(false);
 
   useEffect(() => {
-    fetch("http://3.34.53.252:8000/storage", {
+    fetch("http://13.125.174.118:8000/storage", {
       headers: {
         Authorization: sessionStorage.getItem("token"),
       },
@@ -156,7 +80,7 @@ const MyPlayList = ({
               className="add-list-box"
               onClick={() => {
                 axios({
-                  url: `http://3.34.53.252:8000/storage`,
+                  url: `http://13.125.174.118:8000/storage`,
                   method: "POST",
                   headers: {
                     Authorization: sessionStorage.getItem("token"),
@@ -241,7 +165,6 @@ const PlayListBar = ({
             },
           })
             .then((res) => {
-              console.log(res, "res");
               setCheckedList([]);
               setIsMyPlayListClicked(false);
               setAlertOn(
@@ -249,7 +172,6 @@ const PlayListBar = ({
               );
             })
             .catch((error) => {
-              console.log(error, "에러");
               setAlertOn("이미 플레이리스트에 존재하는 곡입니다.");
             });
         }
@@ -269,3 +191,82 @@ const PlayListBar = ({
 };
 
 export default MyPlayList;
+
+
+const StyledDialog = styled(Dialog)`
+  && {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "NanumBarunGothic", sans-serif;
+
+    .my-play-list-inner-box {
+      display: flex;
+      flex-direction: column;
+      width: 525px;
+      padding: 30px;
+      border-radius: 5px;
+      background-color: white;
+
+      .title {
+        padding-bottom: 25px;
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      .play-lists {
+        overflow-y: auto;
+        max-height: 400px;
+      }
+
+      .add-list-box {
+        display: flex;
+        align-items: center;
+        height: 80px;
+        border-bottom: 1px solid #f2f2f2;
+        color: #3f3fff;
+        cursor: pointer;
+
+        .add-list-cover {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 60px;
+          width: 60px;
+          margin-right: 15px;
+          border-radius: 5px;
+          background-color: #dedede;
+          font-size: 30px;
+        }
+        .add-list {
+          font-weight: bold;
+        }
+      }
+    }
+
+    .play-list-bar-inner-box {
+      display: flex;
+      align-items: center;
+      height: 80px;
+      border-bottom: 1px solid #f2f2f2;
+      cursor: pointer;
+
+      .cover {
+        height: 60px;
+        width: 60px;
+        margin-right: 15px;
+        border-radius: 5px;
+      }
+
+      .album-title {
+        margin-bottom: 10px;
+        font-weight: 700;
+      }
+
+      .num {
+        color: #969696;
+        font-size: 14px;
+      }
+    }
+  }
+`;

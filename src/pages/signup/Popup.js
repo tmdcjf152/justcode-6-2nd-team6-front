@@ -1,6 +1,40 @@
 import React, { useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 
+
+
+
+const Popup = () => {
+    const [timer, setTimer] = useState(true)
+
+    useEffect(() => {
+        setTimeout(() => { setTimer(false) }, 1500)
+    })
+
+    // 현재 날짜 및 시간
+    const now = new Date();
+    let year = now.getFullYear();
+    let month = now.getMonth();
+    let date = now.getDate();
+
+
+    return (
+        <StyledPopup>
+            {timer === true ? <div className="popup-inner-box">
+                <div className="popup">
+                    <span className='popup-date'>{year}년 {month}월 {date}일</span>
+                    <span className='popup-text'><span className='bold'>FLORIDA</span>이벤트/혜택 알림이 수신 동의 처리되었습니다.</span>
+                    <span className='close-text'>해당 창은 2초뒤에 자동으로 사라집니다.</span>
+                </div>
+            </div> : null}
+        </StyledPopup>
+    );
+};
+
+
+
+export default Popup;
+
 const popUPAnimation = keyframes`
 0%{opacity:0}
 25%{opacity:1}
@@ -62,35 +96,3 @@ position: fixed;
     }
 }
 `
-
-
-const Popup = () => {
-    const [timer, setTimer] = useState(true)
-
-    useEffect(() => {
-        setTimeout(() => { setTimer(false) }, 1500)
-    })
-
-    // 현재 날짜 및 시간
-    const now = new Date();
-    let year = now.getFullYear();
-    let month = now.getMonth();
-    let date = now.getDate();
-
-
-    return (
-        <StyledPopup>
-            {timer === true ? <div className="popup-inner-box">
-                <div className="popup">
-                    <span className='popup-date'>{year}년 {month}월 {date}일</span>
-                    <span className='popup-text'><span className='bold'>FLORIDA</span>이벤트/혜택 알림이 수신 동의 처리되었습니다.</span>
-                    <span className='close-text'>해당 창은 2초뒤에 자동으로 사라집니다.</span>
-                </div>
-            </div> : null}
-        </StyledPopup>
-    );
-};
-
-
-
-export default Popup;

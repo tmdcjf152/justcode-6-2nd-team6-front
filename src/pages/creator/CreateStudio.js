@@ -1,249 +1,9 @@
 import React from "react";
-import { Bounce, Slide, Fade, Roll, LightSpeed } from "react-reveal";
 import { NavLink } from "react-router-dom";
+import { Bounce, Slide, Fade, Roll, LightSpeed } from "react-reveal";
 import styled, { keyframes } from "styled-components";
 
-const titleanimation = keyframes`
-0%{
-    background-image: url('https://ifh.cc/g/YpoAxs.png');
-}
-25%{
-    background-image:url('https://ifh.cc/g/pJsnjd.png') ;
-}
-50%{
-    background-image:url('https://ifh.cc/g/GYPtj1.png') ;
 
-}
-75%{
-    background-image:url('https://ifh.cc/g/MfGsSL.png') ;
-
-}
-100%{
-    background-image:url('https://ifh.cc/g/MTBjO2.png') ;
-
-}
-`;
-
-// 타이틀 애니메이션
-const StyledCreateStudio = styled.div`
-  @font-face {
-    src: url("https://www.axis-praxis.org/fonts/webfonts/MetaVariableDemo-Set.woff2")
-      format("woff2");
-    font-family: "Meta";
-    font-style: normal;
-    font-weight: normal;
-  }
-  display: flex;
-  justify-content: center;
-  overflow: hidden;
-
-  .createstudio-inner-box {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 1280px;
-    padding-top: 50px;
-
-    /* 메인 */
-    .createstudio-main-inner-box {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      width: 100%;
-      padding-top: 50px;
-      padding-bottom: 200px;
-      h1 {
-        position: absolute;
-        top: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 200%;
-        height: 100vh;
-        background: #000;
-        padding: 50px 0px;
-        transition: all 0.5s;
-        -webkit-text-stroke: 4px #d6f4f4;
-        font-variation-settings: "wght" 900, "ital" 1;
-        font-size: 13rem;
-        text-align: center;
-        color: transparent;
-        font-family: "Meta", sans-serif;
-        text-shadow: 10px 10px 0px #07bccc, 15px 15px 0px #e601c0,
-          20px 20px 0px #e9019a, 25px 25px 0px #f40468, 45px 45px 10px #482896;
-        cursor: pointer;
-        &:hover {
-          font-variation-settings: "wght" 900, "ital" 1;
-          text-shadow: none;
-        }
-      }
-      .top-title {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 100vh;
-        margin-top: 100vh;
-        margin-bottom: 200px;
-        .top-title-text-1 {
-          display: block;
-          font: bold 70px/1 "apple";
-        }
-        .top-title-text-2 {
-          display: block;
-          font: bold 70px/1 "apple";
-          margin-bottom: 20px;
-        }
-        .top-title-img {
-          position: relative;
-          left: 100px;
-          width: 500px;
-          height: 100px;
-          animation: ${titleanimation} 5s 1s ease-in-out infinite;
-          background-size: cover;
-          margin: 40px 0px;
-        }
-      }
-      .content-inner-box {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        margin-bottom: 200px;
-        .content-text {
-          text-align: center;
-          font: bold 50px/1.3 "apple";
-        }
-      }
-      .content-box-1 {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        margin-bottom: 100px;
-        .content-img-box {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 30%;
-          margin-right: 50px;
-          img {
-            width: 100%;
-            height: 100%;
-          }
-        }
-        .content-text-box {
-          width: 40%;
-
-          .title {
-            display: block;
-            font: bold 50px/1 "apple";
-            margin-bottom: 20px;
-          }
-          .text {
-            display: block;
-            font: 20px/1 "apple";
-            color: #777;
-          }
-        }
-      }
-      /* 크리에이터가 된다면 부분 */
-      .content-create-inner-box {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        .content-create-title {
-          display: block;
-          width: 100%;
-          .color-blue {
-            color: #3f3fff;
-          }
-          font: bold 80px/1 "apple";
-          margin-bottom: 30px;
-        }
-        .content-create-sub-title {
-          font: 20px/1 "apple";
-          color: #777;
-        }
-        /* 콘텐츠2 */
-        .content-create-section-box {
-          .section-box {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            margin: 200px 0px;
-            .section-box-text-box {
-              .section-title {
-                display: block;
-                margin-bottom: 30px;
-                font: bold 60px/1 "apple";
-                color: #3f3fff;
-              }
-              .section-text {
-                display: block;
-                margin-bottom: 10px;
-                font: bold 40px/1 "apple";
-              }
-              .section-sub-text {
-                display: block;
-                font: 18px/1.3 "apple";
-                color: #999;
-              }
-            }
-          }
-        }
-      }
-
-      /* 배너 */
-      .content-create-banner {
-        width: 150%;
-        height: 300px;
-        margin: 0px 0px 300px;
-        .banner {
-          width: 100%;
-          height: 100%;
-          background-size: contain;
-          background-image: url("https://ifh.cc/g/zWWcC2.png");
-        }
-      }
-
-      .last-text {
-        font: bold 70px/1 "apple";
-        margin-bottom: 100px;
-      }
-      .sign-btn {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 300px;
-        height: 70px;
-        font: bold 30px/1 "apple";
-        color: #fff;
-        background: #3f3fff;
-        border-radius: 50px;
-        border: none;
-        transition: all 0.5s;
-        &:hover {
-          background: #fff;
-          color: #3f3fff;
-          border: 1px solid #3f3fff;
-          cursor: pointer;
-        }
-      }
-    }
-  }
-`;
 
 const CreateStudio = ({ isLogin }) => {
   return (
@@ -476,3 +236,245 @@ const CreateStudio = ({ isLogin }) => {
 };
 
 export default CreateStudio;
+
+const titleanimation = keyframes`
+0%{
+    background-image: url('https://ifh.cc/g/YpoAxs.png');
+}
+25%{
+    background-image:url('https://ifh.cc/g/pJsnjd.png') ;
+}
+50%{
+    background-image:url('https://ifh.cc/g/GYPtj1.png') ;
+
+}
+75%{
+    background-image:url('https://ifh.cc/g/MfGsSL.png') ;
+
+}
+100%{
+    background-image:url('https://ifh.cc/g/MTBjO2.png') ;
+
+}
+`;
+
+
+const StyledCreateStudio = styled.div`
+  @font-face {
+    src: url("https://www.axis-praxis.org/fonts/webfonts/MetaVariableDemo-Set.woff2")
+      format("woff2");
+    font-family: "Meta";
+    font-style: normal;
+    font-weight: normal;
+  }
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+
+  .createstudio-inner-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 1280px;
+    padding-top: 50px;
+
+    /* 메인 */
+    .createstudio-main-inner-box {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      width: 100%;
+      padding-top: 50px;
+      padding-bottom: 200px;
+      h1 {
+        position: absolute;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 200%;
+        height: 100vh;
+        background: #000;
+        padding: 50px 0px;
+        transition: all 0.5s;
+        -webkit-text-stroke: 4px #d6f4f4;
+        font-variation-settings: "wght" 900, "ital" 1;
+        font-size: 13rem;
+        text-align: center;
+        color: transparent;
+        font-family: "Meta", sans-serif;
+        text-shadow: 10px 10px 0px #07bccc, 15px 15px 0px #e601c0,
+          20px 20px 0px #e9019a, 25px 25px 0px #f40468, 45px 45px 10px #482896;
+        cursor: pointer;
+        &:hover {
+          font-variation-settings: "wght" 900, "ital" 1;
+          text-shadow: none;
+        }
+      }
+      .top-title {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100vh;
+        margin-top: 100vh;
+        margin-bottom: 200px;
+        .top-title-text-1 {
+          display: block;
+          font: bold 70px/1 "apple";
+        }
+        .top-title-text-2 {
+          display: block;
+          font: bold 70px/1 "apple";
+          margin-bottom: 20px;
+        }
+        .top-title-img {
+          position: relative;
+          left: 100px;
+          width: 500px;
+          height: 100px;
+          animation: ${titleanimation} 5s 1s ease-in-out infinite;
+          background-size: cover;
+          margin: 40px 0px;
+        }
+      }
+      .content-inner-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 200px;
+        .content-text {
+          text-align: center;
+          font: bold 50px/1.3 "apple";
+        }
+      }
+      .content-box-1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 100px;
+        .content-img-box {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 30%;
+          margin-right: 50px;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+        .content-text-box {
+          width: 40%;
+
+          .title {
+            display: block;
+            font: bold 50px/1 "apple";
+            margin-bottom: 20px;
+          }
+          .text {
+            display: block;
+            font: 20px/1 "apple";
+            color: #777;
+          }
+        }
+      }
+      /* 크리에이터가 된다면 부분 */
+      .content-create-inner-box {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        .content-create-title {
+          display: block;
+          width: 100%;
+          .color-blue {
+            color: #3f3fff;
+          }
+          font: bold 80px/1 "apple";
+          margin-bottom: 30px;
+        }
+        .content-create-sub-title {
+          font: 20px/1 "apple";
+          color: #777;
+        }
+        /* 콘텐츠2 */
+        .content-create-section-box {
+          .section-box {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 200px 0px;
+            .section-box-text-box {
+              .section-title {
+                display: block;
+                margin-bottom: 30px;
+                font: bold 60px/1 "apple";
+                color: #3f3fff;
+              }
+              .section-text {
+                display: block;
+                margin-bottom: 10px;
+                font: bold 40px/1 "apple";
+              }
+              .section-sub-text {
+                display: block;
+                font: 18px/1.3 "apple";
+                color: #999;
+              }
+            }
+          }
+        }
+      }
+
+      /* 배너 */
+      .content-create-banner {
+        width: 150%;
+        height: 300px;
+        margin: 0px 0px 300px;
+        .banner {
+          width: 100%;
+          height: 100%;
+          background-size: contain;
+          background-image: url("https://ifh.cc/g/zWWcC2.png");
+        }
+      }
+
+      .last-text {
+        font: bold 70px/1 "apple";
+        margin-bottom: 100px;
+      }
+      .sign-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 300px;
+        height: 70px;
+        font: bold 30px/1 "apple";
+        color: #fff;
+        background: #3f3fff;
+        border-radius: 50px;
+        border: none;
+        transition: all 0.5s;
+        &:hover {
+          background: #fff;
+          color: #3f3fff;
+          border: 1px solid #3f3fff;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+`;

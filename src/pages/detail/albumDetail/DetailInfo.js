@@ -1,36 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
 import { NavLink, useParams } from 'react-router-dom';
+import styled from 'styled-components';
 
-const StyledDetailInfo = styled.section`
-  padding-top: 40px;
 
-  div.detail-info-inner-box {
-    padding-left: 20px;
-
-    div.detail-info-wrap {
-      overflow: hidden;
-      white-space: pre-wrap;
-
-      ul.detail-info-list-box {
-        font-size: 18px;
-        color: #3d3d3d;
-
-        li.detail-info-list {
-          padding: 15px 0;
-        }
-
-        span.detail-info-album-name {
-          font-weight: 600;
-        }
-
-        span.stick {
-          padding: 0 15px;
-        }
-      }
-    }
-  }
-`;
 
 const DetailInfo = ({ albumInfo }) => {
   const params = useParams();
@@ -78,3 +50,33 @@ const DetailInfo = ({ albumInfo }) => {
 };
 
 export default DetailInfo;
+
+const StyledDetailInfo = styled.section`
+  padding-top: 40px;
+
+  div.detail-info-inner-box {
+    padding-left: 20px;
+
+    div.detail-info-wrap {
+      overflow: hidden;
+      white-space: pre-wrap;
+
+      ul.detail-info-list-box {
+        font-size: 18px;
+        color: #3d3d3d;
+
+        li.detail-info-list {
+          padding: 15px 0;
+        }
+
+        span.detail-info-album-name {
+          font-weight: 600;
+        }
+
+        span.stick {
+          padding: 0 15px;
+        }
+      }
+    }
+  }
+`;

@@ -1,7 +1,71 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
 import { BsFillPlayFill } from 'react-icons/bs';
+import styled from 'styled-components';
+
+
+
+const ThirdSection = () => {
+  const [genre, setGenre] = useState([]);
+  useEffect(() => {
+    fetch('/data/genreImage.json')
+      .then((res) => res.json())
+      .then((data) => {
+        setGenre(data.genreImg);
+      });
+  }, []);
+
+  return (
+    <StyledSection>
+      <section className='second-section-inner-box'>
+        {/*오늘 발매 음악 정보 */}
+        <div className='second-section-info-box'>
+          {/*오늘 발매 음악 제목 */}
+          <div className='second-section-title-box'>
+            <h3 className='second-section-title'>
+              <Link to='/detail' className='second-section-title-link'>
+                <span className='second-section-today-music'>장르 콜렉션</span>
+              </Link>
+            </h3>
+          </div>
+        </div>
+        {/*최신 발매 음악 정보 끝 */}
+        <div className='second-section-album-inner-box'>
+          <div className='second-section-album-wrap'>
+            {/*앨범리스트*/}
+            {genre.map((el) => {
+              return (
+                <div key={el.imageId} className='second-section-album-box'>
+                  <div className='second-section-album-list'>
+                    <Link to='#' className='second-section-album-link'>
+                      <div className='second-section-album-img-box'>
+                        <img
+                          alt='앨범 표지'
+                          className='second-section-album-cover'
+                          src={el.image}
+                        />
+                      </div>
+                    </Link>
+                    <button
+                      alt='플레이 버튼'
+                      className='second-section-play-button'
+                      type='button'
+                    >
+                      <BsFillPlayFill className='second-section-play-button-icon' />
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+            {/*앨범리스트 끝*/}
+          </div>
+        </div>
+      </section>
+    </StyledSection>
+  );
+};
+
+export default ThirdSection;
 
 const StyledSection = styled.section`
   width: 100%;
@@ -122,65 +186,3 @@ const StyledSection = styled.section`
     }
   }
 `;
-
-const ThirdSection = () => {
-  const [genre, setGenre] = useState([]);
-  useEffect(() => {
-    fetch('/data/genreImage.json')
-      .then((res) => res.json())
-      .then((data) => {
-        setGenre(data.genreImg);
-      });
-  }, []);
-
-  return (
-    <StyledSection>
-      <section className='second-section-inner-box'>
-        {/*오늘 발매 음악 정보 */}
-        <div className='second-section-info-box'>
-          {/*오늘 발매 음악 제목 */}
-          <div className='second-section-title-box'>
-            <h3 className='second-section-title'>
-              <Link to='/detail' className='second-section-title-link'>
-                <span className='second-section-today-music'>장르 콜렉션</span>
-              </Link>
-            </h3>
-          </div>
-        </div>
-        {/*최신 발매 음악 정보 끝 */}
-        <div className='second-section-album-inner-box'>
-          <div className='second-section-album-wrap'>
-            {/*앨범리스트*/}
-            {genre.map((el) => {
-              return (
-                <div key={el.imageId} className='second-section-album-box'>
-                  <div className='second-section-album-list'>
-                    <Link to='#' className='second-section-album-link'>
-                      <div className='second-section-album-img-box'>
-                        <img
-                          alt='앨범 표지'
-                          className='second-section-album-cover'
-                          src={el.image}
-                        />
-                      </div>
-                    </Link>
-                    <button
-                      alt='플레이 버튼'
-                      className='second-section-play-button'
-                      type='button'
-                    >
-                      <BsFillPlayFill className='second-section-play-button-icon' />
-                    </button>
-                  </div>
-                </div>
-              );
-            })}
-            {/*앨범리스트 끝*/}
-          </div>
-        </div>
-      </section>
-    </StyledSection>
-  );
-};
-
-export default ThirdSection;

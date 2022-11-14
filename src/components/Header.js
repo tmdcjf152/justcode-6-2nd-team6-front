@@ -1,8 +1,117 @@
-import styled from "@emotion/styled";
 import React, { useState } from "react";
-import { AiOutlineSearch } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
+import { AiOutlineSearch } from "react-icons/ai";
 import UserModal from "./UserModal";
+import styled from "@emotion/styled";
+
+
+
+const Header = ({
+  token,
+  setToken,
+  user_name,
+  user_img,
+  setIsLogin,
+  isLogin,
+  setMusicTracks,
+  headerShow,
+  setHeaderShow,
+  footerShow,
+  setFooterShow,
+}) => {
+  const [toggle, setToggle] = useState(false);
+  const logOut = () => {
+    setToggle(!toggle);
+    setIsLogin(!isLogin);
+    setMusicTracks([]);
+    sessionStorage.clear();
+  };
+
+  return (
+    <StyledHeader>
+      <div className="header-inner-box">
+        {/* 로고박스 */}
+        <div className="header-logo-box">
+          <NavLink to="/" className="header-logo">
+            <img src="/Images/logo.png" alt="Florida로고" />
+          </NavLink>
+        </div>
+
+        {/* 메뉴박스 */}
+        <div className="header-nav-box">
+          <ul className="header-nav-list">
+            <li>
+              <NavLink to="/browse/전체차트/0">둘러보기</NavLink>
+            </li>
+            <li>
+              <NavLink to="/storage/mylist">보관함</NavLink>
+            </li>
+            <li>
+              <NavLink to="/purchase/voucher">이용권</NavLink>
+            </li>
+          </ul>
+        </div>
+
+        {/* 검색창 */}
+        <div className="header-input-box">
+          <AiOutlineSearch />
+          <input type="text" placeholder="검색어를 입력하세요" />
+        </div>
+
+        {/* 크리에이터 스튜디오 / 로그인 / 회원가입 박스 로그인OFF */}
+        <div className="header-login-box">
+          <div className="header-login-menu-box">
+            <ul className="header-login-menu-list">
+              <li className="studio">
+                <NavLink to="/promotion/cms/flocreators">
+                  크리에이터 스튜디오
+                </NavLink>
+              </li>
+              {isLogin ? (
+                <div
+                  onClick={() => {
+                    setToggle(!toggle);
+                  }}
+                >
+                  <li className="header-login-on">
+                    <span className="user-name">
+                      {user_name} 님 반갑습니다.
+                    </span>
+                    <div className="user-img">
+                      <img src={user_img} alt="" />
+                    </div>
+                  </li>
+                </div>
+              ) : (
+                <>
+                  <li className="header-login-off">
+                    <NavLink to="/login">로그인</NavLink>
+                  </li>
+                  <li className="header-login-off">
+                    <NavLink to="/signup">회원가입</NavLink>
+                  </li>
+                </>
+              )}
+              {toggle === true ? (
+                <UserModal
+                  user_name={user_name}
+                  user_img={user_img}
+                  token={token}
+                  setToken={setToken}
+                  logOut={logOut}
+                  setMusicTracks={setMusicTracks}
+                />
+              ) : null}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </StyledHeader>
+  );
+};
+
+export default Header;
+
 
 const StyledHeader = styled.header`
   .header-inner-box {
@@ -131,109 +240,3 @@ const StyledHeader = styled.header`
     }
   }
 `;
-
-const Header = ({
-  token,
-  setToken,
-  user_name,
-  user_img,
-  setIsLogin,
-  isLogin,
-  setMusicTracks,
-  headerShow,
-  setHeaderShow,
-  footerShow,
-  setFooterShow,
-}) => {
-  const [toggle, setToggle] = useState(false);
-  const logOut = () => {
-    setToggle(!toggle);
-    setIsLogin(!isLogin);
-    setMusicTracks([]);
-    sessionStorage.clear();
-  };
-
-  return (
-    <StyledHeader>
-      <div className="header-inner-box">
-        {/* 로고박스 */}
-        <div className="header-logo-box">
-          <NavLink to="/" className="header-logo">
-            <img src="/Images/logo.png" alt="Florida로고" />
-          </NavLink>
-        </div>
-
-        {/* 메뉴박스 */}
-        <div className="header-nav-box">
-          <ul className="header-nav-list">
-            <li>
-              <NavLink to="/browse/전체차트/0">둘러보기</NavLink>
-            </li>
-            <li>
-              <NavLink to="/storage/mylist">보관함</NavLink>
-            </li>
-            <li>
-              <NavLink to="/purchase/voucher">이용권</NavLink>
-            </li>
-          </ul>
-        </div>
-
-        {/* 검색창 */}
-        <div className="header-input-box">
-          <AiOutlineSearch />
-          <input type="text" placeholder="검색어를 입력하세요" />
-        </div>
-
-        {/* 크리에이터 스튜디오 / 로그인 / 회원가입 박스 로그인OFF */}
-        <div className="header-login-box">
-          <div className="header-login-menu-box">
-            <ul className="header-login-menu-list">
-              <li className="studio">
-                <NavLink to="/promotion/cms/flocreators">
-                  크리에이터 스튜디오
-                </NavLink>
-              </li>
-              {isLogin ? (
-                <div
-                  onClick={() => {
-                    setToggle(!toggle);
-                  }}
-                >
-                  <li className="header-login-on">
-                    <span className="user-name">
-                      {user_name} 님 반갑습니다.
-                    </span>
-                    <div className="user-img">
-                      <img src={user_img} alt="" />
-                    </div>
-                  </li>
-                </div>
-              ) : (
-                <>
-                  <li className="header-login-off">
-                    <NavLink to="/login">로그인</NavLink>
-                  </li>
-                  <li className="header-login-off">
-                    <NavLink to="/signup">회원가입</NavLink>
-                  </li>
-                </>
-              )}
-              {toggle === true ? (
-                <UserModal
-                  user_name={user_name}
-                  user_img={user_img}
-                  token={token}
-                  setToken={setToken}
-                  logOut={logOut}
-                  setMusicTracks={setMusicTracks}
-                />
-              ) : null}
-            </ul>
-          </div>
-        </div>
-      </div>
-    </StyledHeader>
-  );
-};
-
-export default Header;

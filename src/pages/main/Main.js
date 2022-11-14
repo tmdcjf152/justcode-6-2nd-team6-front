@@ -3,28 +3,11 @@ import { Fade } from "react-reveal";
 import styled from "styled-components";
 import FirstSection from "./sections/FirstSection";
 import SecondSection from "./sections/SecondSection";
-import Container from "@mui/material/Container";
 import LoginPopup from "../login/LoginPopup";
 import Loading from "../../components/Loading";
 import ThirdSection from "./sections/ThirdSection";
 
-const StyledMain = styled.main`
-  width: 1280px;
-  margin: 0 auto;
 
-  div.main-inner-box {
-    width: 100%;
-    height: 100%;
-
-    display: flex;
-    justify-content: center;
-    font-family: "NanumBarunGothic", sans-serif;
-
-    div.main-wrap {
-      margin-top: 120px;
-    }
-  }
-`;
 
 const Main = ({ loginText, musicTracks, setMusicTracks, setAlertOn }) => {
   const [slide, setSlide] = useState([]);
@@ -32,21 +15,21 @@ const Main = ({ loginText, musicTracks, setMusicTracks, setAlertOn }) => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    fetch("http://3.34.53.252:8000/", {
+    fetch("http://13.125.174.118:8000/", {
       method: "GET",
       headers: { "content-type": "application/json" },
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.slideData);
+
         setLoading(true);
         setSlide(data.slideData);
       });
 
-    fetch("http://3.34.53.252:8000/")
+    fetch("http://13.125.174.118:8000/")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+
         setAlbumList(data.recent);
         setLoading(true);
       });
@@ -91,3 +74,22 @@ const Main = ({ loginText, musicTracks, setMusicTracks, setAlertOn }) => {
 };
 
 export default Main;
+
+
+const StyledMain = styled.main`
+  width: 1280px;
+  margin: 0 auto;
+
+  div.main-inner-box {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    font-family: "NanumBarunGothic", sans-serif;
+
+    div.main-wrap {
+      margin-top: 120px;
+    }
+  }
+`;

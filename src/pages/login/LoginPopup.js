@@ -1,6 +1,24 @@
-
-import React, { useEffect, useState } from 'react';
+import React  from 'react';
 import styled, { keyframes } from "styled-components";
+
+
+
+const LoginPopup = () => {
+
+    const user_name = sessionStorage.getItem('name')
+
+    return (
+        <StyledLoginPopup>
+            <div className="login-popup-inner-box">
+                <div className="login-popup">
+                    <span className='login-popup-text'>{user_name}님 반갑습니다. 오늘도 FLORIDA와 함께 즐거운 하루되세요</span>
+                </div>
+            </div>
+        </StyledLoginPopup>
+    );
+};
+
+export default LoginPopup;
 
 const popUp = keyframes`
 0% {
@@ -48,20 +66,3 @@ const StyledLoginPopup = styled.div`
     }
 }
 `
-
-const LoginPopup = () => {
-
-    const user_name = sessionStorage.getItem('name')
-
-    return (
-        <StyledLoginPopup>
-            <div className="login-popup-inner-box">
-                <div className="login-popup">
-                    <span className='login-popup-text'>{user_name}님 반갑습니다. 오늘도 FLORIDA와 함께 즐거운 하루되세요</span>
-                </div>
-            </div>
-        </StyledLoginPopup>
-    );
-};
-
-export default LoginPopup;

@@ -1,6 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const NoMyVoucher = ({ navigate }) => {
+  return (
+    <StyledNoMyVoucher>
+      <div className='voucher-card-noitem'>
+        <div className='msg-novoucher'>
+          <span>사용 중인 이용권이 없습니다.</span>
+          <button
+            type='button'
+            className='btn-round'
+            onClick={() => {
+              navigate('/purchase/voucher');
+            }}
+          >
+            이용권 구매
+          </button>
+        </div>
+      </div>
+    </StyledNoMyVoucher>
+  );
+};
+
+export default NoMyVoucher;
+
 const StyledNoMyVoucher = styled.div`
   .voucher-card-noitem {
     display: flex;
@@ -42,26 +65,3 @@ const StyledNoMyVoucher = styled.div`
     }
   }
 `;
-
-const NoMyVoucher = ({ navigate }) => {
-  return (
-    <StyledNoMyVoucher>
-      <div className='voucher-card-noitem'>
-        <div className='msg-novoucher'>
-          <span>사용 중인 이용권이 없습니다.</span>
-          <button
-            type='button'
-            className='btn-round'
-            onClick={() => {
-              navigate('/purchase/voucher');
-            }}
-          >
-            이용권 구매
-          </button>
-        </div>
-      </div>
-    </StyledNoMyVoucher>
-  );
-};
-
-export default NoMyVoucher;

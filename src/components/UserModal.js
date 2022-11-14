@@ -2,6 +2,57 @@ import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+
+const UserModal = ({ user_name, user_img, isLogin, logOut }) => {
+  const navigate = useNavigate();
+
+  return (
+    <StyledUserModal>
+      <div className="modal-inner-box">
+        <p className="user-info-title">내 정보</p>
+        {/* 유저정보 */}
+        <div className="user-info-box">
+          {/* 유저 이미지박스 */}
+          <NavLink className="user-info-img-box">
+            <img src={user_img} alt="" />
+          </NavLink>
+          {/* 유저 닉네임박스 */}
+          <NavLink to="/My" className="user-info-text-box">
+            <span className="user-id">{user_name} 님</span>
+            <p className="user-text">즐거운 플로리다 되세요.</p>
+          </NavLink>
+        </div>
+
+        {/* 마이페이지 */}
+        <NavLink to="/" className="user-my-page-box">
+          <span>마이페이지</span>
+        </NavLink>
+
+        {/* 이용권관리 */}
+        <NavLink to="/" className="user-voucher-box">
+          <span>이용권관리</span>
+        </NavLink>
+
+        {/* 로그아웃버튼 */}
+        <div className="logout-btn-box">
+          <button
+            type="button"
+            className="logout-btn"
+            onClick={() => {
+              logOut();
+              navigate("/");
+            }}
+          >
+            로그아웃
+          </button>
+        </div>
+      </div>
+    </StyledUserModal>
+  );
+};
+
+export default UserModal;
+
 const StyledUserModal = styled.div`
   .modal-inner-box {
     position: fixed;
@@ -114,52 +165,3 @@ const StyledUserModal = styled.div`
     }
   }
 `;
-const UserModal = ({ user_name, user_img, isLogin, logOut }) => {
-  const navigate = useNavigate();
-
-  return (
-    <StyledUserModal>
-      <div className="modal-inner-box">
-        <p className="user-info-title">내 정보</p>
-        {/* 유저정보 */}
-        <div className="user-info-box">
-          {/* 유저 이미지박스 */}
-          <NavLink className="user-info-img-box">
-            <img src={user_img} alt="" />
-          </NavLink>
-          {/* 유저 닉네임박스 */}
-          <NavLink to="/My" className="user-info-text-box">
-            <span className="user-id">{user_name} 님</span>
-            <p className="user-text">즐거운 플로리다 되세요.</p>
-          </NavLink>
-        </div>
-
-        {/* 마이페이지 */}
-        <NavLink to="/" className="user-my-page-box">
-          <span>마이페이지</span>
-        </NavLink>
-
-        {/* 이용권관리 */}
-        <NavLink to="/" className="user-voucher-box">
-          <span>이용권관리</span>
-        </NavLink>
-
-        {/* 로그아웃버튼 */}
-        <div className="logout-btn-box">
-          <button
-            type="button"
-            className="logout-btn"
-            onClick={() => {
-              logOut();
-              navigate("/");
-            }}
-          >
-            로그아웃
-          </button>
-        </div>
-      </div>
-    </StyledUserModal>
-  );
-};
-
-export default UserModal;

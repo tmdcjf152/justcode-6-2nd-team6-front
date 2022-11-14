@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams, useLocation } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { BsPlay } from "react-icons/bs";
 import { BsFillPlayFill } from "react-icons/bs";
@@ -10,6 +10,449 @@ import { FiMusic } from "react-icons/fi";
 import { IoDiscOutline } from "react-icons/io5";
 import MyPlayList from "../../../components/playbar/MyPlayList";
 import Loading from "../../../components/Loading";
+
+
+
+const ArtistTrack = ({
+  musicTracks,
+  setMusicTracks,
+  setAlertOn,
+  isMyPlayListClicked,
+  setIsMyPlayListClicked,
+  isSelectClicked,
+  setIsSelectClicked,
+  checkedList,
+  setCheckedList,
+}) => {
+  const [loading, setLoading] = useState(false);
+
+  const params = useParams();
+  const [sortType, setSortType] = useState([
+    { id: 1, name: "최신순", selected: false },
+    { id: 2, name: "인기순", selected: false },
+    { id: 3, name: "가나다순", selected: false },
+  ]);
+  const [songsData, setSongsData] = useState([]);
+  const [trackData, setTrackData] = useState([]);
+  const [isMoreMenuClicked, setIsMoreMenuClicked] = useState(false);
+  const [isGetMyPlayListClicked, setIsGetMyPlayListClicked] = useState(false); // 오류 안뜨게하는 용도
+  const musicTracksId = musicTracks.map((el) => el.songId);
+
+  const onCheckedElement = (checked, item) => {
+    if (checked === false) {
+      setCheckedList([...checkedList, item]);
+    } else if (checked === true) {
+      setCheckedList(checkedList.filter((el) => el !== item));
+    }
+
+  };
+
+  const sortHandler = (e) => {
+    const arr = sortType.map((data) => {
+      return data.id === Number(e.target.type)
+        ? { id: data.id, name: data.name, selected: true }
+        : { id: data.id, name: data.name, selected: false };
+    });
+    setSortType(arr);
+
+    const selectedName = arr.filter((result) => {
+      return result.selected;
+    })[0].name;
+    const newArr = songsData.filter((data) => {
+      return !data.includes("sortType=");
+    });
+
+    if (selectedName == "최신순") {
+      setSongsData(() => [...newArr, "sortType=RECENT"]);
+    } else if (selectedName == "인기순") {
+      return setSongsData(() => [...newArr, "sortType=POPULARITY"]);
+    } else if (selectedName == "가나다순") {
+      return setSongsData(() => [...newArr, "sortType=WORD"]);
+    }
+  };
+
+
+
+
+  useEffect(() => {
+    const queryString =
+      songsData.length == 0
+        ? "?sortType=WORD&roleType=ALL"
+        : "?" + songsData.join("&");
+
+    fetch(
+      `http://13.125.174.118:8000/detail/artist/${params.artistId}/songs${queryString}`,
+      {
+        method: "GET",
+        headers: { "content-type": "application/json" },
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setLoading(true);
+        setTrackData(data.artistSongs);
+      });
+  }, [songsData]);
+
+  return !loading ? (
+    <Loading />
+  ) : (
+    <StyledTrack>
+      <div className="artist-track-inner-box">
+        <div className="artist-track-whole-box">
+          <button
+            className="artist-track-whole-play-btn"
+            type="button"
+            onClick={() => {
+              if (trackData[0].songTitle !== null) {
+                fetch(
+                  `http://3.34.53.252:8000/play/addsongs/artist/${trackData[0].songId}`,
+                  {
+                    headers: {
+                      Authorization: sessionStorage.getItem("token"),
+                    },
+                  }
+                )
+                  .then((res) => res.json())
+                  .then((plData) => {
+                    const musicTracksId = musicTracks.map((el) => el.songId);
+                    const filteredNewTracks = plData.filter(
+                      (el, i) => musicTracksId.includes(el.songId) === false
+                    );
+                    setMusicTracks([...filteredNewTracks, ...musicTracks]);
+                    setAlertOn(
+                      "현재 재생목록에 추가되었습니다. 중복된 곡은 제외됩니다."
+                    );
+                  })
+                  .catch((err) => {
+                    if (sessionStorage.getItem("token") !== null)
+                      setAlertOn(
+                        "이용권을 구매해야 음악 재생 서비스를 이용하실 수 있습니다."
+                      );
+                  });
+              }
+            }}
+          >
+            <BsPlay className="artist-track-whole-icon" />
+            <span className="artist-track-whole-play">전체듣기</span>
+          </button>
+          <div className="artist-track-head-wrap">
+            <span className="artist-track-stick" />
+
+          </div>
+        </div>
+        {/* 수록곡 정보 */}
+        <div className="artist-track-list-box">
+          <p
+            className="edit hover"
+            onClick={() => {
+              setIsSelectClicked(!isSelectClicked);
+              setCheckedList([]);
+            }}
+          >
+            {isSelectClicked ? "완료" : "선택"}
+          </p>
+          <table className="artist-track-list-table">
+            <caption>곡 목록</caption>
+            <colgroup>
+              <col width="42" data-cell="체크박스" />
+              <col width="*" data-cell="곡/앨범" />
+              <col width="250" data-cell="아티스트" />
+              <col width="70" data-cell="듣기" />
+              <col width="75" data-cell="재생목록" />
+              <col width="70" data-cell="더보기" />
+            </colgroup>
+            <thead>
+              <tr>
+                <th scope="col">
+                  <input
+                    name="전체 곡 선택하기"
+                    className="artist-track-list-all-checkbox"
+                    type="checkbox"
+                    disabled={isSelectClicked ? false : true}
+                    checked={
+                      trackData.length === checkedList.length ? true : false
+                    }
+                    onClick={() => {
+                      if (checkedList.length < trackData.length) {
+                        setCheckedList(trackData.map((el) => el.songId));
+                      } else setCheckedList([]);
+                    }}
+                  />
+                </th>
+                <th scope="col" className="artist-track-list-info">
+                  곡/앨범
+                </th>
+                <th scope="col" className="artist-track-list-artist">
+                  아티스트
+                </th>
+                <th scope="col" className="artist-track-list-icon">
+                  {" "}
+                  듣기{" "}
+                </th>
+                <th scope="col" className="artist-track-list-icon">
+                  {" "}
+                  내 리스트{" "}
+                </th>
+                <th scope="col" className="artist-track-list-icon">
+                  {" "}
+                  더보기{" "}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {trackData.map((el) => {
+                const songPlay = () => {
+                  fetch(
+                    `http://3.34.53.252:8000/play/addsongs/song/${el.songId}`,
+                    {
+                      headers: {
+                        Authorization: sessionStorage.getItem("token"),
+                      },
+                    }
+                  )
+                    .then((res) => res.json())
+                    .then((el) => {
+                      if (el.message == "Need Voucher")
+                        setAlertOn(
+                          "이용권을 구매해야 음악 재생 서비스를 이용하실 수 있습니다."
+                        );
+                      else if (el !== "Error: Invaild Access") {
+
+                        const song = el[0];
+                        if (musicTracksId.includes(song.songId) === false) {
+                          setMusicTracks([song, ...musicTracks]);
+                          setAlertOn("현재 재생목록에 추가되었습니다.");
+                        } else
+                          setAlertOn("이미 현재 재생목록에 있는 곡입니다.");
+                      }
+                    });
+                };
+                return (
+                  <tr key={el.songId}>
+                    <td
+                      className="artist-track-list-select"
+                      onClick={() => {
+                        if (isSelectClicked === true)
+                          onCheckedElement(
+                            checkedList.includes(el.songId),
+                            el.songId
+                          );
+                      }}
+                    >
+                      <input
+                        name="곡 선택하기"
+                        className="artist-track-list-checkbox"
+                        type="checkbox"
+                        disabled={isSelectClicked ? false : true}
+                        checked={
+                          checkedList.includes(el.songId) && isSelectClicked
+                            ? true
+                            : false
+                        }
+                        onChange={() => {
+                          onCheckedElement(
+                            checkedList.includes(el.songId),
+                            el.songId
+                          );
+                        }}
+                      />
+                    </td>
+                    {/* 수록곡 곡/앨범 */}
+                    <td className="artist-track-list-info-wrap">
+                      <div className="artist-track-list-info-box">
+                        <div className="artist-track-list-info-thumb">
+                          <Link
+                            to={`/detail/album/${el.albumId}/details`}
+                            className="artist-track-list-info-album"
+                          >
+                            <img
+                              alt="앨범 이미지"
+                              src={el.albumImage}
+                              className="artist-track-list-info-img"
+                            />
+                          </Link>
+                        </div>
+                        <div className="artist-track-list-info-txt-area">
+                          <div
+                            className="artist-track-list-song"
+                            onClick={() => {
+                              if (isSelectClicked === false) songPlay();
+                            }}
+                          >
+                            {" "}
+                            {el.songTitle}{" "}
+                          </div>
+                          <div className="artist-track-list-album-box">
+                            <Link
+                              to={`/detail/album/${el.albumId}/details`}
+                              className="artist-track-list-album-link"
+                            >
+                              <div className="artist-track-list-album">
+                                {" "}
+                                {el.albumTitle}{" "}
+                              </div>
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    {/* 수록곡 아티스트 */}
+                    <td className="artist-track-list-artist-box">
+                      <Link to="#" className="artist-track-list-artist">
+                        <span className="artist-track-artist">
+                          {el.artistName}
+                        </span>
+                      </Link>
+                    </td>
+                    {/* 수록곡 아이콘 */}
+                    {isSelectClicked || (
+                      <>
+                        <td className="artist-track-list-icon">
+                          <button
+                            type="button"
+                            className="artist-track-icon-listen"
+                            onClick={() => songPlay()}
+                          >
+                            <BsFillPlayFill className="artist-track-icon-listen-icon" />
+                          </button>
+                        </td>
+                        <td className="artist-track-list-icon">
+                          <button
+                            type="button"
+                            className="artist-track-icon-listen"
+                            onClick={() => {
+                              setCheckedList([el.songId]);
+                              setIsMyPlayListClicked(true);
+                            }}
+                          >
+                            <VscNewFolder className="artist-track-icon-listen-icon" />
+                          </button>
+                        </td>
+                        <td className="artist-track-list-icon">
+                          <button
+                            type="button"
+                            className="artist-track-icon-listen"
+                            onClick={() => {
+                              setCheckedList([el.songId]);
+                              if (el.songId === checkedList[0])
+                                setIsMoreMenuClicked(!isMoreMenuClicked);
+                              else setIsMoreMenuClicked(true);
+                            }}
+                          >
+                            <AiOutlineMore className="artist-track-icon-listen-icon" />
+                          </button>
+                          {el.songId !== checkedList[0] || !isMoreMenuClicked || (
+                            <div className="more-menu-list">
+                              <Link
+                                className="more-menu"
+                                to={`/detail/track/${el.songId}`}
+                              >
+                                <FiMusic className="icon" />곡 정보
+                              </Link>
+                              <Link
+                                to={`/detail/album/${el.albumId}/details`}
+                                className="more-menu"
+                              >
+                                <IoDiscOutline className="icon" />
+                                앨범 정보
+                              </Link>
+                              <Link
+                                to={`/detail/artist/${el.artistId}/songs`}
+                                className="more-menu"
+                              >
+                                <BiMicrophone className="icon" />
+                                아티스트 정보
+                              </Link>
+                            </div>
+                          )}
+                        </td>
+                      </>
+                    )}
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+        {/* 모달 창 */}
+        {!isSelectClicked || checkedList.length === 0 || (
+          <div className="edit-inner-box">
+            <div className="edit-container">
+              <div className="edit-box">
+                <div className="checklist-counter">{checkedList.length}</div>
+                <div
+                  className="wrapper"
+                  onClick={() => {
+                    setCheckedList([]);
+                  }}
+                >
+                  <AiOutlineCheck className="icon" />
+                  <div className="text">선택해제</div>
+                </div>
+              </div>
+              <div className="edit-box">
+                <div
+                  className="wrapper"
+                  onClick={() => {
+                    fetch(
+                      `http://3.34.53.252:8000/play/addsongs/artist/${trackData[0].songId}`,
+                      {
+                        headers: {
+                          Authorization: sessionStorage.getItem("token"),
+                        },
+                      }
+                    )
+                      .then((res) => res.json())
+                      .then((plData) => {
+                        const selectedPlData = plData.filter(
+                          (el, i) => checkedList.includes(el.songId) === true
+                        );
+                        const musicTracksId = musicTracks.map(
+                          (el) => el.songId
+                        );
+                        const filteredSelectedPlData = selectedPlData.filter(
+                          (el, i) => musicTracksId.includes(el.songId) === false
+                        );
+                        setMusicTracks([
+                          ...filteredSelectedPlData,
+                          ...musicTracks,
+                        ]);
+                        setAlertOn(
+                          "재생목록에 추가되었습니다. 중복된 곡은 제외됩니다."
+                        );
+                        setCheckedList([]);
+                      })
+                      .catch((err) => {
+                        if (sessionStorage.getItem("token") !== null)
+                          setAlertOn(
+                            "이용권을 구매해야 음악 재생 서비스를 이용하실 수 있습니다."
+                          );
+                      });
+                  }}
+                >
+                  <BsFillPlayFill className="icon" size="18" />
+                  <div className="text">듣기</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        <MyPlayList
+          isMyPlayListClicked={isMyPlayListClicked}
+          setIsMyPlayListClicked={setIsMyPlayListClicked}
+          checkedList={checkedList}
+          setCheckedList={setCheckedList}
+          setIsGetMyPlayListClicked={setIsGetMyPlayListClicked}
+          setAlertOn={setAlertOn}
+        />
+      </div>
+    </StyledTrack>
+  );
+};
+
+export default ArtistTrack;
 
 const StyledLi = styled.li`
   color: ${(props) => (props.selected ? "#3f3fff" : "black")};
@@ -385,502 +828,3 @@ const StyledTrack = styled.div`
     }
   }
 `;
-
-const ArtistTrack = ({
-  name,
-  musicTracks,
-  setMusicTracks,
-  setAlertOn,
-  isMyPlayListClicked,
-  setIsMyPlayListClicked,
-  isSelectClicked,
-  setIsSelectClicked,
-  checkedList,
-  setCheckedList,
-}) => {
-  const [loading, setLoading] = useState(false);
-  const location = useLocation();
-  const params = useParams();
-  const [roleType, setRoleType] = useState([
-    { id: 1, name: "전체", selected: false },
-    { id: 2, name: "정규/싱글", selected: false },
-    { id: 3, name: "참여", selected: false },
-  ]);
-  const [sortType, setSortType] = useState([
-    { id: 1, name: "최신순", selected: false },
-    { id: 2, name: "인기순", selected: false },
-    { id: 3, name: "가나다순", selected: false },
-  ]);
-  const [songsData, setSongsData] = useState([]);
-  const [trackData, setTrackData] = useState([]);
-  const [isMoreMenuClicked, setIsMoreMenuClicked] = useState(false);
-  const [isGetMyPlayListClicked, setIsGetMyPlayListClicked] = useState(false); // 오류 안뜨게하는 용도
-  const musicTracksId = musicTracks.map((el) => el.songId);
-
-  const onCheckedElement = (checked, item) => {
-    if (checked === false) {
-      setCheckedList([...checkedList, item]);
-    } else if (checked === true) {
-      setCheckedList(checkedList.filter((el) => el !== item));
-    }
-    console.log(checkedList);
-  };
-
-  const sortHandler = (e) => {
-    const arr = sortType.map((data) => {
-      return data.id === Number(e.target.type)
-        ? { id: data.id, name: data.name, selected: true }
-        : { id: data.id, name: data.name, selected: false };
-    });
-    setSortType(arr);
-
-    const selectedName = arr.filter((result) => {
-      return result.selected;
-    })[0].name;
-    const newArr = songsData.filter((data) => {
-      return !data.includes("sortType=");
-    });
-
-    if (selectedName == "최신순") {
-      setSongsData(() => [...newArr, "sortType=RECENT"]);
-    } else if (selectedName == "인기순") {
-      return setSongsData(() => [...newArr, "sortType=POPULARITY"]);
-    } else if (selectedName == "가나다순") {
-      return setSongsData(() => [...newArr, "sortType=WORD"]);
-    }
-  };
-
-  const roleHandler = (e) => {
-    const arr = roleType.map((data) => {
-      return data.id == e.target.type
-        ? { id: data.id, name: data.name, selected: true }
-        : { id: data.id, name: data.name, selected: false };
-    });
-    setRoleType(arr);
-
-    const selectedName = arr.filter((result) => {
-      return result.selected;
-    })[0].name;
-    const newArr = songsData.filter((data) => {
-      return !data.includes("roleType=");
-    });
-
-    if (selectedName == "전체") {
-      setSongsData(() => [...newArr, " roleType=ALL"]);
-    } else if (selectedName == "정규/싱글") {
-      return setSongsData(() => [...newArr, "roleType=RELEASE"]);
-    } else if (selectedName == "참여") {
-      return setSongsData(() => [...newArr, "roleType=JOIN"]);
-    }
-  };
-
-  console.log(songsData.join("&"));
-
-  useEffect(() => {
-    const result = name == "곡" ? "songs" : "albums";
-    const queryString =
-      songsData.length == 0
-        ? "?sortType=WORD&roleType=ALL"
-        : "?" + songsData.join("&");
-
-    fetch(
-      `http://3.34.53.252:8000/detail/artist/${params.artistId}/songs${queryString}`,
-      {
-        method: "GET",
-        headers: { "content-type": "application/json" },
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setLoading(true);
-        setTrackData(data.artistSongs);
-      });
-  }, [songsData]);
-
-  return !loading ? (
-    <Loading />
-  ) : (
-    <StyledTrack>
-      <div className="artist-track-inner-box">
-        <div className="artist-track-whole-box">
-          <button
-            className="artist-track-whole-play-btn"
-            type="button"
-            onClick={() => {
-              if (trackData[0].songTitle !== null) {
-                fetch(
-                  `http://3.34.53.252:8000/play/addsongs/artist/${trackData[0].songId}`,
-                  {
-                    headers: {
-                      Authorization: sessionStorage.getItem("token"),
-                    },
-                  }
-                )
-                  .then((res) => res.json())
-                  .then((plData) => {
-                    const musicTracksId = musicTracks.map((el) => el.songId);
-                    const filteredNewTracks = plData.filter(
-                      (el, i) => musicTracksId.includes(el.songId) === false
-                    );
-                    setMusicTracks([...filteredNewTracks, ...musicTracks]);
-                    setAlertOn(
-                      "현재 재생목록에 추가되었습니다. 중복된 곡은 제외됩니다."
-                    );
-                  })
-                  .catch((err) => {
-                    if (sessionStorage.getItem("token") !== null)
-                      setAlertOn(
-                        "이용권을 구매해야 음악 재생 서비스를 이용하실 수 있습니다."
-                      );
-                  });
-              }
-            }}
-          >
-            <BsPlay className="artist-track-whole-icon" />
-            <span className="artist-track-whole-play">전체듣기</span>
-          </button>
-          <div className="artist-track-head-wrap">
-            {/* <ul>
-              {roleType.map((result) => {
-                return (
-                  <StyledLi
-                    selected={result.selected}
-                    className="type"
-                    type={result.id}
-                    onClick={roleHandler}
-                  >
-                    {result.name}
-                  </StyledLi>
-                );
-              })}
-            </ul> */}
-            <span className="artist-track-stick" />
-            {/* <ul>
-              {sortType.map((result) => {
-                return (
-                  <StyledLi
-                    selected={result.selected}
-                    className="type"
-                    type={result.id}
-                    onClick={sortHandler}
-                  >
-                    {result.name}
-                  </StyledLi>
-                );
-              })}
-            </ul> */}
-          </div>
-        </div>
-        {/* 수록곡 정보 */}
-        <div className="artist-track-list-box">
-          <p
-            className="edit hover"
-            onClick={() => {
-              setIsSelectClicked(!isSelectClicked);
-              setCheckedList([]);
-            }}
-          >
-            {isSelectClicked ? "완료" : "선택"}
-          </p>
-          <table className="artist-track-list-table">
-            <caption>곡 목록</caption>
-            <colgroup>
-              <col width="42" data-cell="체크박스" />
-              <col width="*" data-cell="곡/앨범" />
-              <col width="250" data-cell="아티스트" />
-              <col width="70" data-cell="듣기" />
-              <col width="75" data-cell="재생목록" />
-              <col width="70" data-cell="더보기" />
-            </colgroup>
-            <thead>
-              <tr>
-                <th scope="col">
-                  <input
-                    name="전체 곡 선택하기"
-                    className="artist-track-list-all-checkbox"
-                    type="checkbox"
-                    disabled={isSelectClicked ? false : true}
-                    checked={
-                      trackData.length === checkedList.length ? true : false
-                    }
-                    onClick={() => {
-                      if (checkedList.length < trackData.length) {
-                        setCheckedList(trackData.map((el) => el.songId));
-                      } else setCheckedList([]);
-                    }}
-                  />
-                </th>
-                <th scope="col" className="artist-track-list-info">
-                  곡/앨범
-                </th>
-                <th scope="col" className="artist-track-list-artist">
-                  아티스트
-                </th>
-                <th scope="col" className="artist-track-list-icon">
-                  {" "}
-                  듣기{" "}
-                </th>
-                <th scope="col" className="artist-track-list-icon">
-                  {" "}
-                  내 리스트{" "}
-                </th>
-                <th scope="col" className="artist-track-list-icon">
-                  {" "}
-                  더보기{" "}
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {trackData.map((el) => {
-                const songPlay = () => {
-                  fetch(
-                    `http://3.34.53.252:8000/play/addsongs/song/${el.songId}`,
-                    {
-                      headers: {
-                        Authorization: sessionStorage.getItem("token"),
-                      },
-                    }
-                  )
-                    .then((res) => res.json())
-                    .then((el) => {
-                      if (el.message == "Need Voucher")
-                        setAlertOn(
-                          "이용권을 구매해야 음악 재생 서비스를 이용하실 수 있습니다."
-                        );
-                      else if (el !== "Error: Invaild Access") {
-                        console.log(el);
-                        const song = el[0];
-                        if (musicTracksId.includes(song.songId) === false) {
-                          setMusicTracks([song, ...musicTracks]);
-                          setAlertOn("현재 재생목록에 추가되었습니다.");
-                        } else
-                          setAlertOn("이미 현재 재생목록에 있는 곡입니다.");
-                      }
-                    });
-                };
-                return (
-                  <tr key={el.songId}>
-                    <td
-                      className="artist-track-list-select"
-                      onClick={() => {
-                        if (isSelectClicked === true)
-                          onCheckedElement(
-                            checkedList.includes(el.songId),
-                            el.songId
-                          );
-                      }}
-                    >
-                      <input
-                        name="곡 선택하기"
-                        className="artist-track-list-checkbox"
-                        type="checkbox"
-                        disabled={isSelectClicked ? false : true}
-                        checked={
-                          checkedList.includes(el.songId) && isSelectClicked
-                            ? true
-                            : false
-                        }
-                        onChange={() => {
-                          onCheckedElement(
-                            checkedList.includes(el.songId),
-                            el.songId
-                          );
-                        }}
-                      />
-                    </td>
-                    {/* 수록곡 곡/앨범 */}
-                    <td className="artist-track-list-info-wrap">
-                      <div className="artist-track-list-info-box">
-                        <div className="artist-track-list-info-thumb">
-                          <Link
-                            to={`/detail/album/${el.albumId}/details`}
-                            className="artist-track-list-info-album"
-                          >
-                            <img
-                              alt="앨범 이미지"
-                              src={el.albumImage}
-                              className="artist-track-list-info-img"
-                            />
-                          </Link>
-                        </div>
-                        <div className="artist-track-list-info-txt-area">
-                          <div
-                            className="artist-track-list-song"
-                            onClick={() => {
-                              if (isSelectClicked === false) songPlay();
-                            }}
-                          >
-                            {" "}
-                            {el.songTitle}{" "}
-                          </div>
-                          <div className="artist-track-list-album-box">
-                            <Link
-                              to={`/detail/album/${el.albumId}/details`}
-                              className="artist-track-list-album-link"
-                            >
-                              <div className="artist-track-list-album">
-                                {" "}
-                                {el.albumTitle}{" "}
-                              </div>
-                            </Link>
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                    {/* 수록곡 아티스트 */}
-                    <td className="artist-track-list-artist-box">
-                      <Link to="#" className="artist-track-list-artist">
-                        <span className="artist-track-artist">
-                          {el.artistName}
-                        </span>
-                      </Link>
-                    </td>
-                    {/* 수록곡 아이콘 */}
-                    {isSelectClicked || (
-                      <>
-                        <td className="artist-track-list-icon">
-                          <button
-                            type="button"
-                            className="artist-track-icon-listen"
-                            onClick={() => songPlay()}
-                          >
-                            <BsFillPlayFill className="artist-track-icon-listen-icon" />
-                          </button>
-                        </td>
-                        <td className="artist-track-list-icon">
-                          <button
-                            type="button"
-                            className="artist-track-icon-listen"
-                            onClick={() => {
-                              setCheckedList([el.songId]);
-                              setIsMyPlayListClicked(true);
-                            }}
-                          >
-                            <VscNewFolder className="artist-track-icon-listen-icon" />
-                          </button>
-                        </td>
-                        <td className="artist-track-list-icon">
-                          <button
-                            type="button"
-                            className="artist-track-icon-listen"
-                            onClick={() => {
-                              setCheckedList([el.songId]);
-                              if (el.songId === checkedList[0])
-                                setIsMoreMenuClicked(!isMoreMenuClicked);
-                              else setIsMoreMenuClicked(true);
-                            }}
-                          >
-                            <AiOutlineMore className="artist-track-icon-listen-icon" />
-                          </button>
-                          {el.songId !== checkedList[0] || !isMoreMenuClicked || (
-                            <div className="more-menu-list">
-                              <Link
-                                className="more-menu"
-                                to={`/detail/track/${el.songId}`}
-                              >
-                                <FiMusic className="icon" />곡 정보
-                              </Link>
-                              <Link
-                                to={`/detail/album/${el.albumId}/details`}
-                                className="more-menu"
-                              >
-                                <IoDiscOutline className="icon" />
-                                앨범 정보
-                              </Link>
-                              <Link
-                                to={`/detail/artist/${el.artistId}/songs`}
-                                className="more-menu"
-                              >
-                                <BiMicrophone className="icon" />
-                                아티스트 정보
-                              </Link>
-                            </div>
-                          )}
-                        </td>
-                      </>
-                    )}
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-        {/* 모달 창 */}
-        {!isSelectClicked || checkedList.length === 0 || (
-          <div className="edit-inner-box">
-            <div className="edit-container">
-              <div className="edit-box">
-                <div className="checklist-counter">{checkedList.length}</div>
-                <div
-                  className="wrapper"
-                  onClick={() => {
-                    setCheckedList([]);
-                  }}
-                >
-                  <AiOutlineCheck className="icon" />
-                  <div className="text">선택해제</div>
-                </div>
-              </div>
-              <div className="edit-box">
-                <div
-                  className="wrapper"
-                  onClick={() => {
-                    fetch(
-                      `http://3.34.53.252:8000/play/addsongs/artist/${trackData[0].songId}`,
-                      {
-                        headers: {
-                          Authorization: sessionStorage.getItem("token"),
-                        },
-                      }
-                    )
-                      .then((res) => res.json())
-                      .then((plData) => {
-                        console.log(plData);
-                        const selectedPlData = plData.filter(
-                          (el, i) => checkedList.includes(el.songId) === true
-                        );
-                        const musicTracksId = musicTracks.map(
-                          (el) => el.songId
-                        );
-                        const filteredSelectedPlData = selectedPlData.filter(
-                          (el, i) => musicTracksId.includes(el.songId) === false
-                        );
-                        setMusicTracks([
-                          ...filteredSelectedPlData,
-                          ...musicTracks,
-                        ]);
-                        setAlertOn(
-                          "재생목록에 추가되었습니다. 중복된 곡은 제외됩니다."
-                        );
-                        setCheckedList([]);
-                      })
-                      .catch((err) => {
-                        if (sessionStorage.getItem("token") !== null)
-                          setAlertOn(
-                            "이용권을 구매해야 음악 재생 서비스를 이용하실 수 있습니다."
-                          );
-                      });
-                  }}
-                >
-                  <BsFillPlayFill className="icon" size="18" />
-                  <div className="text">듣기</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        <MyPlayList
-          isMyPlayListClicked={isMyPlayListClicked}
-          setIsMyPlayListClicked={setIsMyPlayListClicked}
-          checkedList={checkedList}
-          setCheckedList={setCheckedList}
-          setIsGetMyPlayListClicked={setIsGetMyPlayListClicked}
-          setAlertOn={setAlertOn}
-        />
-      </div>
-    </StyledTrack>
-  );
-};
-
-export default ArtistTrack;

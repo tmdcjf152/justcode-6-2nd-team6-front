@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
-import Popup from './Popup';
 import { Fade } from 'react-reveal';
+import Popup from './Popup';
+import styled from 'styled-components';
 
 const StyledTerms = styled.div`
   .terms-inner-box {

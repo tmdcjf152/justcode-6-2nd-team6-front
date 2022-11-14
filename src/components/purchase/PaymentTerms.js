@@ -1,8 +1,208 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 import naverpay from "../../Img/naverpay.png";
 import kakaopay from "../../Img/kakaopay.png";
-import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+
+
+
+const PaymentTerms = ({ closeModal, voucherId, salePrice, paymentType }) => {
+  const [checkList, setCheckList] = useState([]);
+  const [disabled, setDisabled] = useState(true);
+  // 결제수단 클릭시 색깔 변화
+  const [isNaverPayClicked, setIsNaverPayClicked] = useState(false);
+  const [isKakaoPayClicked, setIsKakaoPayClicked] = useState(false);
+  const [isCardClicked, setIsCardClicked] = useState(false);
+  const [isPhoneAllClicked, setIsPhoneAllClicked] = useState(false);
+  const [isPhoneClicked, setIsPhoneClicked] = useState(false);
+  // 결제수단 클릭시 Post로 보낼 경우 필요!
+  const [payWith, setPayWith] = useState("");
+  const navigate = useNavigate();
+
+  // 전체체크 선택시 전체 선택 or 전체해제
+  const checkAll = (e) => {
+    e.target.checked ? setCheckList(["check0", "check1"]) : setCheckList([]);
+  };
+
+  // 체크박스 전체선택시 모두선택 체크박스 활성화시키기
+  const handleCheck = (e) => {
+    e.target.checked
+      ? setCheckList([...checkList, e.target.name])
+      : setCheckList(checkList.filter((el) => el !== e.target.name));
+  };
+
+  // 필수체크 풀리면 버튼활성화 해제
+  useEffect(() => {
+    if (checkList.includes("check0") && checkList.includes("check1")) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  }, [checkList]);
+
+  // 결제하기 버튼 클릭 시 POST 방식
+  const onPayClick = () => {
+    fetch("http://13.125.174.118:8000/purchase/my", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: sessionStorage.getItem("token"),
+      },
+      body: JSON.stringify({
+        voucherId: voucherId,
+        payment: salePrice,
+        payWith: payWith,
+        paymentType: paymentType,
+      }),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.message === "PURCHASE_SUCCESS") {
+          alert("결제되었습니다!");
+          navigate("/");
+        } else {
+          alert("결제에 실패하였습니다.");
+        }
+      });
+  };
+
+  return (
+    <StyledPaymentTerms>
+      <div className="payment-option">
+        <h3 className="payment-option-title">결제방법</h3>
+        <div className="options-list">
+          <button
+            type="button"
+            className={isNaverPayClicked ? "btn-selected" : "btn-primary"}
+            onClick={() => {
+              setPayWith("네이버페이");
+              setIsNaverPayClicked(true);
+              setIsKakaoPayClicked(false);
+              setIsCardClicked(false);
+              setIsPhoneAllClicked(false);
+              setIsPhoneClicked(false);
+            }}
+          >
+            <span className="btn-naverpay pay-img">네이버페이</span>
+          </button>
+          <button
+            type="button"
+            className={isKakaoPayClicked ? "btn-selected" : "btn-primary"}
+            onClick={() => {
+              setPayWith("카카오페이");
+              setIsNaverPayClicked(false);
+              setIsKakaoPayClicked(true);
+              setIsCardClicked(false);
+              setIsPhoneAllClicked(false);
+              setIsPhoneClicked(false);
+            }}
+          >
+            <span className="btn-kakaopay pay-img">카카오페이</span>
+          </button>
+          <button
+            type="button"
+            className={isCardClicked ? "btn-selected" : "btn-primary"}
+            onClick={() => {
+              setPayWith("신용/체크카드");
+              setIsNaverPayClicked(false);
+              setIsKakaoPayClicked(false);
+              setIsCardClicked(true);
+              setIsPhoneAllClicked(false);
+              setIsPhoneClicked(false);
+            }}
+          >
+            <span>신용/체크카드</span>
+          </button>
+          <button
+            type="button"
+            className={isPhoneAllClicked ? "btn-selected" : "btn-primary"}
+            onClick={() => {
+              setPayWith("휴대폰(공통)");
+              setIsNaverPayClicked(false);
+              setIsKakaoPayClicked(false);
+              setIsCardClicked(false);
+              setIsPhoneAllClicked(true);
+              setIsPhoneClicked(false);
+            }}
+          >
+            <span>휴대폰(공통)</span>
+          </button>
+          <button
+            type="button"
+            className={isPhoneClicked ? "btn-selected" : "btn-primary"}
+            onClick={() => {
+              setPayWith("휴대폰(SKT)");
+              setIsNaverPayClicked(false);
+              setIsKakaoPayClicked(false);
+              setIsCardClicked(false);
+              setIsPhoneAllClicked(false);
+              setIsPhoneClicked(true);
+            }}
+          >
+            <span>휴대폰(SKT)</span>
+          </button>
+        </div>
+        <p className="agree-check-all">
+          <input
+            type="checkbox"
+            id="AgreeAll"
+            name="AgreeAll"
+            onChange={checkAll}
+            checked={checkList.length === 2 ? true : false}
+          />
+          <label htmlFor="AgreeAll"></label>
+          <span>아래 내용에 모두 확인, 동의 합니다.</span>
+        </p>
+        <ul>
+          <li className="has-view">
+            <input
+              type="checkbox"
+              id="check0"
+              name="check0"
+              checked={checkList.includes("check0") ? true : false}
+              onChange={handleCheck}
+            />
+            <label htmlFor="check0"></label>
+            <span>
+              <em className="mandatory">(필수)</em>상기 결제내역과 이용약관 및
+              하단 유의사항에 동의합니다.
+            </span>
+            <a href="#" className="txtBtn btn-view" target="_blank">
+              <span>약관확인</span>
+            </a>
+          </li>
+          <li>
+            <input
+              type="checkbox"
+              id="check1"
+              name="check1"
+              checked={checkList.includes("check1") ? true : false}
+              onChange={handleCheck}
+            />
+            <label htmlFor="check1"></label>
+            <span>
+              <em className="mandatory">(필수)</em>본 이용권은 결제 시점으로부터
+              1개월의 사용기간을 기준으로 하는 월 단위 상품으로, 결제하신
+              이용권의 사용기간을 기준으로 하는 월 단위 상품으로, 결제하신
+              이용권의 사용기간 만료일자 1일 전 별도의 고지 없이 자동 정기 결제
+              되는 것에 동의합니다.
+            </span>
+          </li>
+        </ul>
+      </div>
+      <div className="btn-wrap bottom-fixed">
+        <button className="btn-cancel-pay" onClick={closeModal}>
+          결제취소
+        </button>
+        <button className="btn-pay" disabled={disabled} onClick={onPayClick}>
+          결제하기
+        </button>
+      </div>
+    </StyledPaymentTerms>
+  );
+};
+
+export default PaymentTerms;
 
 const StyledPaymentTerms = styled.div`
   .payment-option {
@@ -209,201 +409,3 @@ const StyledPaymentTerms = styled.div`
     }
   }
 `;
-
-const PaymentTerms = ({ closeModal, voucherId, salePrice, paymentType }) => {
-  const [checkList, setCheckList] = useState([]);
-  const [disabled, setDisabled] = useState(true);
-  // 결제수단 클릭시 색깔 변화
-  const [isNaverPayClicked, setIsNaverPayClicked] = useState(false);
-  const [isKakaoPayClicked, setIsKakaoPayClicked] = useState(false);
-  const [isCardClicked, setIsCardClicked] = useState(false);
-  const [isPhoneAllClicked, setIsPhoneAllClicked] = useState(false);
-  const [isPhoneClicked, setIsPhoneClicked] = useState(false);
-  // 결제수단 클릭시 Post로 보낼 경우 필요!
-  const [payWith, setPayWith] = useState("");
-  const navigate = useNavigate();
-
-  // 전체체크 선택시 전체 선택 or 전체해제
-  const checkAll = (e) => {
-    e.target.checked ? setCheckList(["check0", "check1"]) : setCheckList([]);
-  };
-
-  // 체크박스 전체선택시 모두선택 체크박스 활성화시키기
-  const handleCheck = (e) => {
-    e.target.checked
-      ? setCheckList([...checkList, e.target.name])
-      : setCheckList(checkList.filter((el) => el !== e.target.name));
-  };
-
-  // 필수체크 풀리면 버튼활성화 해제
-  useEffect(() => {
-    if (checkList.includes("check0") && checkList.includes("check1")) {
-      setDisabled(false);
-    } else {
-      setDisabled(true);
-    }
-  }, [checkList]);
-
-  // 결제하기 버튼 클릭 시 POST 방식
-  const onPayClick = () => {
-    fetch("http://3.34.53.252:8000/purchase/my", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: sessionStorage.getItem("token"),
-      },
-      body: JSON.stringify({
-        voucherId: voucherId,
-        payment: salePrice,
-        payWith: payWith,
-        paymentType: paymentType,
-      }),
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        if (result.message === "PURCHASE_SUCCESS") {
-          alert("결제되었습니다!");
-          navigate("/");
-        } else {
-          alert("결제에 실패하였습니다.");
-        }
-      });
-  };
-
-  return (
-    <StyledPaymentTerms>
-      <div className="payment-option">
-        <h3 className="payment-option-title">결제방법</h3>
-        <div className="options-list">
-          <button
-            type="button"
-            className={isNaverPayClicked ? "btn-selected" : "btn-primary"}
-            onClick={() => {
-              setPayWith("네이버페이");
-              setIsNaverPayClicked(true);
-              setIsKakaoPayClicked(false);
-              setIsCardClicked(false);
-              setIsPhoneAllClicked(false);
-              setIsPhoneClicked(false);
-            }}
-          >
-            <span className="btn-naverpay pay-img">네이버페이</span>
-          </button>
-          <button
-            type="button"
-            className={isKakaoPayClicked ? "btn-selected" : "btn-primary"}
-            onClick={() => {
-              setPayWith("카카오페이");
-              setIsNaverPayClicked(false);
-              setIsKakaoPayClicked(true);
-              setIsCardClicked(false);
-              setIsPhoneAllClicked(false);
-              setIsPhoneClicked(false);
-            }}
-          >
-            <span className="btn-kakaopay pay-img">카카오페이</span>
-          </button>
-          <button
-            type="button"
-            className={isCardClicked ? "btn-selected" : "btn-primary"}
-            onClick={() => {
-              setPayWith("신용/체크카드");
-              setIsNaverPayClicked(false);
-              setIsKakaoPayClicked(false);
-              setIsCardClicked(true);
-              setIsPhoneAllClicked(false);
-              setIsPhoneClicked(false);
-            }}
-          >
-            <span>신용/체크카드</span>
-          </button>
-          <button
-            type="button"
-            className={isPhoneAllClicked ? "btn-selected" : "btn-primary"}
-            onClick={() => {
-              setPayWith("휴대폰(공통)");
-              setIsNaverPayClicked(false);
-              setIsKakaoPayClicked(false);
-              setIsCardClicked(false);
-              setIsPhoneAllClicked(true);
-              setIsPhoneClicked(false);
-            }}
-          >
-            <span>휴대폰(공통)</span>
-          </button>
-          <button
-            type="button"
-            className={isPhoneClicked ? "btn-selected" : "btn-primary"}
-            onClick={() => {
-              setPayWith("휴대폰(SKT)");
-              setIsNaverPayClicked(false);
-              setIsKakaoPayClicked(false);
-              setIsCardClicked(false);
-              setIsPhoneAllClicked(false);
-              setIsPhoneClicked(true);
-            }}
-          >
-            <span>휴대폰(SKT)</span>
-          </button>
-        </div>
-        <p className="agree-check-all">
-          <input
-            type="checkbox"
-            id="AgreeAll"
-            name="AgreeAll"
-            onChange={checkAll}
-            checked={checkList.length === 2 ? true : false}
-          />
-          <label htmlFor="AgreeAll"></label>
-          <span>아래 내용에 모두 확인, 동의 합니다.</span>
-        </p>
-        <ul>
-          <li className="has-view">
-            <input
-              type="checkbox"
-              id="check0"
-              name="check0"
-              checked={checkList.includes("check0") ? true : false}
-              onChange={handleCheck}
-            />
-            <label htmlFor="check0"></label>
-            <span>
-              <em className="mandatory">(필수)</em>상기 결제내역과 이용약관 및
-              하단 유의사항에 동의합니다.
-            </span>
-            <a href="#" className="txtBtn btn-view" target="_blank">
-              <span>약관확인</span>
-            </a>
-          </li>
-          <li>
-            <input
-              type="checkbox"
-              id="check1"
-              name="check1"
-              checked={checkList.includes("check1") ? true : false}
-              onChange={handleCheck}
-            />
-            <label htmlFor="check1"></label>
-            <span>
-              <em className="mandatory">(필수)</em>본 이용권은 결제 시점으로부터
-              1개월의 사용기간을 기준으로 하는 월 단위 상품으로, 결제하신
-              이용권의 사용기간을 기준으로 하는 월 단위 상품으로, 결제하신
-              이용권의 사용기간 만료일자 1일 전 별도의 고지 없이 자동 정기 결제
-              되는 것에 동의합니다.
-            </span>
-          </li>
-        </ul>
-      </div>
-      <div className="btn-wrap bottom-fixed">
-        <button className="btn-cancel-pay" onClick={closeModal}>
-          결제취소
-        </button>
-        <button className="btn-pay" disabled={disabled} onClick={onPayClick}>
-          결제하기
-        </button>
-      </div>
-    </StyledPaymentTerms>
-  );
-};
-
-export default PaymentTerms;

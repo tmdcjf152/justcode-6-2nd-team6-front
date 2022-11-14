@@ -1,6 +1,51 @@
 import React from 'react';
 import styled from 'styled-components';
 
+
+
+const BuyMyVoucher = ({ userVoucher }) => {
+  return (
+    <StyledBuyMyVoucher>
+      <div className='voucher-card-item voucher-card-using'>
+        <div className='card-left'>
+          <h4 className='name'>
+            {userVoucher.voucherName} {userVoucher.paymentType}
+          </h4>
+          <span className='voucher-label'>사용 중</span>
+          <div className='etc-area'>
+            <button type='button' className='link-layer'>
+              이용권 관리
+            </button>
+          </div>
+        </div>
+        <div className='card-right'>
+          <ul className='voucher-info-list'>
+            <li>
+              <span className='th'>사용기간</span>
+              <span className='td'>{userVoucher.period}</span>
+            </li>
+            <li>
+              <span className='th'>구매출처</span>
+              <span className='td'>FLOrida</span>
+            </li>
+            <li>
+              <span className='th'>결제설정</span>
+              <span className='td'>{userVoucher.payWith}</span>
+            </li>
+            <li>
+              <span className='th'>결제수단</span>
+              <span className='td'>{userVoucher.payWith}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </StyledBuyMyVoucher>
+  );
+};
+
+export default BuyMyVoucher;
+
+
 const StyledBuyMyVoucher = styled.div`
   .voucher-card-item {
     position: relative;
@@ -113,45 +158,3 @@ const StyledBuyMyVoucher = styled.div`
     }
   }
 `;
-
-const BuyMyVoucher = ({ userVoucher }) => {
-  return (
-    <StyledBuyMyVoucher>
-      <div className='voucher-card-item voucher-card-using'>
-        <div className='card-left'>
-          <h4 className='name'>
-            {userVoucher.voucherName} {userVoucher.paymentType}
-          </h4>
-          <span className='voucher-label'>사용 중</span>
-          <div className='etc-area'>
-            <button type='button' className='link-layer'>
-              이용권 관리
-            </button>
-          </div>
-        </div>
-        <div className='card-right'>
-          <ul className='voucher-info-list'>
-            <li>
-              <span className='th'>사용기간</span>
-              <span className='td'>{userVoucher.period}</span>
-            </li>
-            <li>
-              <span className='th'>구매출처</span>
-              <span className='td'>FLOrida</span>
-            </li>
-            <li>
-              <span className='th'>결제설정</span>
-              <span className='td'>{userVoucher.payWith}</span>
-            </li>
-            <li>
-              <span className='th'>결제수단</span>
-              <span className='td'>{userVoucher.payWith}</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </StyledBuyMyVoucher>
-  );
-};
-
-export default BuyMyVoucher;

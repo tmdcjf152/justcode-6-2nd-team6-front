@@ -1,6 +1,8 @@
 import React from "react";
+import { AiOutlineCheck } from 'react-icons/ai';
+import { BsFillPlayFill } from 'react-icons/bs';
 
-const MoreModal = () => {
+const MoreModal = ({checkedList, setCheckedList,musicTracks,setMusicTracks,setAlertOn,location}) => {
   return (
     <div>
       <div className="edit-inner-box">
@@ -21,7 +23,7 @@ const MoreModal = () => {
             <div
               className="wrapper"
               onClick={() => {
-                fetch(`http://3.34.53.252:8000${location.pathname}`, {
+                fetch(`http://13.125.174.118:8000/${location.pathname}`, {
                   headers: {
                     Authorization: sessionStorage.getItem("token"),
                   },

@@ -1,5 +1,48 @@
-import styled from "styled-components";
 import { IoIosPlayCircle } from "react-icons/io";
+import styled from "styled-components";
+
+
+
+const SimilarSong = ({ data, musicTracks, setMusicTracks, setAlertOn }) => {
+  return (
+    <StyledSimilarSong>
+      {data.map((el, i) => {
+        const musicTracksId = musicTracks.map((el) => el.songId);
+        const songPlay = () => {
+          fetch(`http://13.125.174.118:8000/play/addsongs/song/${el.songId}`, {
+            headers: {
+              Authorization: sessionStorage.getItem("token"),
+            },
+          })
+            .then((res) => res.json())
+            .then((data) => {
+
+              const song = data[0];
+              if (musicTracksId.includes(song.songId) === false) {
+                setMusicTracks([song, ...musicTracks]);
+                setAlertOn("현재 재생목록에 추가되었습니다.");
+              } else setAlertOn("이미 현재 재생목록에 있는 곡입니다.");
+            });
+        };
+        return (
+          <div className="similar-song-inner-box" key={el.songId}>
+            <div className="song-info flex-center" onClick={() => songPlay()}>
+              <img src={el.albumCover} alt="album cover" className="cover" />
+              <div className="title-and-artist">
+                <div className="title">{el.songTitle}</div>
+                <div className="artist">{el.songArtist}</div>
+              </div>
+            </div>
+            <IoIosPlayCircle className="play" onClick={() => songPlay()} />
+          </div>
+        );
+      })}
+    </StyledSimilarSong>
+  );
+};
+
+export default SimilarSong;
+
 
 const StyledSimilarSong = styled.div`
   display: flex;
@@ -43,43 +86,3 @@ const StyledSimilarSong = styled.div`
     }
   }
 `;
-
-const SimilarSong = ({ data, musicTracks, setMusicTracks, setAlertOn }) => {
-  return (
-    <StyledSimilarSong>
-      {data.map((el, i) => {
-        const musicTracksId = musicTracks.map((el) => el.songId);
-        const songPlay = () => {
-          fetch(`http://3.34.53.252:8000/play/addsongs/song/${el.songId}`, {
-            headers: {
-              Authorization: sessionStorage.getItem("token"),
-            },
-          })
-            .then((res) => res.json())
-            .then((data) => {
-              console.log(data);
-              const song = data[0];
-              if (musicTracksId.includes(song.songId) === false) {
-                setMusicTracks([song, ...musicTracks]);
-                setAlertOn("현재 재생목록에 추가되었습니다.");
-              } else setAlertOn("이미 현재 재생목록에 있는 곡입니다.");
-            });
-        };
-        return (
-          <div className="similar-song-inner-box" key={el.songId}>
-            <div className="song-info flex-center" onClick={() => songPlay()}>
-              <img src={el.albumCover} alt="album cover" className="cover" />
-              <div className="title-and-artist">
-                <div className="title">{el.songTitle}</div>
-                <div className="artist">{el.songArtist}</div>
-              </div>
-            </div>
-            <IoIosPlayCircle className="play" onClick={() => songPlay()} />
-          </div>
-        );
-      })}
-    </StyledSimilarSong>
-  );
-};
-
-export default SimilarSong;
